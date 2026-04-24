@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@layer base {
+  body {
+    @apply bg-surface-950 text-gray-100 font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-bold tracking-tight;
+  }
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .article-content h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-white;
+  }
+  .article-content h3 {
+    @apply text-xl font-semibold mt-6 mb-3 text-gray-100;
+  }
+  .article-content p {
+    @apply text-gray-300 leading-relaxed mb-4 text-lg;
+  }
+  .article-content ul, .article-content ol {
+    @apply text-gray-300 mb-4 pl-6 space-y-2;
+  }
+  .article-content li {
+    @apply leading-relaxed;
+  }
+  .article-content blockquote {
+    @apply border-l-4 border-brand-500 pl-4 italic text-gray-400 my-6;
+  }
+  .article-content strong {
+    @apply text-white font-semibold;
+  }
+  .article-content a {
+    @apply text-brand-400 hover:text-brand-300 underline;
+  }
+  .article-content img {
+    @apply rounded-xl my-6 w-full;
+  }
+  .article-content code {
+    @apply bg-surface-800 px-1.5 py-0.5 rounded text-sm text-brand-300;
+  }
+  .article-content pre {
+    @apply bg-surface-800 p-4 rounded-xl overflow-x-auto mb-6;
+  }
+}
