@@ -11,9 +11,9 @@ readingTime: 9
 
 # Google mise 40 milliards sur Anthropic : la guerre de l'IA entre dans une nouvelle dimension
 
-**40 milliards de dollars.** C'est la somme que Google s'apprête à injecter dans Anthropic, la start-up derrière l'assistant IA Claude. Dont 10 milliards immédiatement. Pour mettre ça en perspective : c'est 3 fois ce que Microsoft a investi dans OpenAI. C'est plus que le PIB de la Slovénie.
+**40 milliards de dollars.** C'est la somme que Google s'apprête à injecter dans Anthropic, la start-up derrière l'assistant IA Claude. Dont 10 milliards immédiatement — le solde de 30 milliards étant conditionné à des critères de performance. Pour mettre ça en perspective : c'est 3 fois ce que Microsoft a investi dans OpenAI. C'est plus que le PIB de la Slovénie.
 
-Le 24 avril 2026, cette annonce fait l'effet d'une bombe dans l'écosystème tech. Mais au-delà du chiffre vertigineux, c'est le signal d'un basculement stratégique majeur. Décryptage.
+Le 24 avril 2026, cette annonce fait l'effet d'une bombe dans l'écosystème tech. Mais au-delà du chiffre vertigineux, c'est le signal d'un basculement stratégique majeur. Surtout quand on sait qu'Anthropic avait déjà levé 30 milliards en février 2026, pour une valorisation de 350 milliards de dollars. Décryptage.
 
 ## Les faits, rien que les faits
 
@@ -105,11 +105,11 @@ Trois choses :
 3. **La question éthique reste entière.** Concentration de pouvoir, surveillance au travail, deepfakes — la technologie avance plus vite que la régulation. Vigilance requise.
 
 ## Sources
-- franceinfo, "Google va investir 40 milliards de dollars dans la start-up d'IA Anthropic", 24/04/2026
-- 01net, "Nouvelle fuite chez Anthropic : un curieux trouve le moyen d'utiliser Claude Mythos à l'insu de la start-up", avril 2026
-- 01net, "Clics, frappes au clavier, captures d'écran : Meta va espionner ses salariés pour entraîner ses IA", avril 2026
-- 01net, "Panne mondiale de ChatGPT : l'IA ne répond plus", avril 2026
+- [Google va investir 40 milliards de dollars dans la start-up d'IA Anthropic](https://www.franceinfo.fr/internet/intelligence-artificielle/google-va-investir-40-milliards-de-dollars-dans-la-start-up-d-ia-anthropic-dont-10-immediatement_7962260.html) — franceinfo, 24/04/2026
+- [Nouvelle fuite chez Anthropic](https://www.01net.com/actualites/nouvelle-fuite-chez-anthropic-curieux-trouve-moyen-utiliser-claude-mythos-insu-start-up.html) — 01net, avril 2026
+- [Meta va espionner ses salariés pour entraîner ses IA](https://www.01net.com/actualites/clics-frappes-au-clavier-captures-decran-meta-va-espionner-ses-salaries-pour-entrainer-ses-ia.html) — 01net, avril 2026
+- [Panne mondiale de ChatGPT](https://www.01net.com/actualites/panne-mondiale-de-chatgpt-lia-ne-repond-plus-que-se-passe-t-il.html) — 01net, avril 2026
 
 ## À lire aussi
-- [Panne mondiale ChatGPT : l'IA ne répond plus](/ia/panne-mondiale-chatgpt)
-- [DeepSeek : le nouveau modèle chinois qui secoue l'IA](/ia/deepseek-nouveau-modele-chinois)
+- [Bitcoin : le cours à 77 000 $, analyse](/crypto/bitcoin-77k-analyse-avril-2026)
+- [Fuite de données ANTS : 12 millions de comptes touchés](/cyber/fuite-donnees-ants-12-millions)
