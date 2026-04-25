@@ -59,10 +59,10 @@ export default async function ArticlePage({ params }: { params: { topic: string;
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-[1.2] mb-4 text-white" style={{textShadow:'0 2px 10px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.6)'}}>{article.title}</h1>
             {/* Description with shadow */}
             <p className="text-base sm:text-lg leading-relaxed text-gray-200" style={{textShadow:'0 1px 4px rgba(0,0,0,0.7)'}}>{article.description}</p>
-            {/* Meta — visible, bigger */}
-            <div className="flex flex-wrap items-center gap-4 mt-6 text-sm font-medium text-white/90" style={{textShadow:'0 1px 4px rgba(0,0,0,0.8)'}}>
+            {/* Meta — blanc pur, bien visible */}
+            <div className="flex flex-wrap items-center gap-4 mt-6 text-sm font-semibold text-white">
               <span className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-full bg-black/30 backdrop-blur-sm flex items-center justify-center text-[10px] font-bold text-white">DT</div>
+                <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-[10px] font-bold text-white">DT</div>
                 {article.author}
               </span>
               <time>{dateStr}</time>
@@ -82,14 +82,14 @@ export default async function ArticlePage({ params }: { params: { topic: string;
               {/* Related articles */}
               {related.length > 0 && (
                 <div>
-                  <h3 className="text-sm font-bold mb-4" style={{color:'var(--text-primary)'}}>À lire aussi</h3>
+                  <h3 className="text-base font-extrabold mb-4" style={{color:'var(--text-primary)'}}>À lire aussi</h3>
                   {related.map(a => <ArticleCard key={a.slug} article={a} variant="compact" />)}
                 </div>
               )}
 
               {/* Topics */}
               <div>
-                <h3 className="text-sm font-bold mb-4" style={{color:'var(--text-primary)'}}>Rubriques</h3>
+                <h3 className="text-base font-extrabold mb-4" style={{color:'var(--text-primary)'}}>Rubriques</h3>
                 <div className="space-y-0.5">
                   {topics.map(t => (
                     <Link key={t.id} href={`/${t.slug}`} className="flex items-center gap-2 px-2 py-2 rounded-lg transition-colors hover:opacity-80" style={{color:'var(--text-secondary)'}}>

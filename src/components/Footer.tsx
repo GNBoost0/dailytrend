@@ -7,9 +7,9 @@ export default function Footer() {
   return (
     <footer className="mt-20 border-t border-[var(--border)]" style={{background:'var(--bg-secondary)'}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {/* Logo — plein écran mobile, centré desktop */}
-        <div className="flex justify-center mb-8">
-          <img src="/logo.png" alt="DailyTrend" className="w-2/3 sm:w-48 md:w-56" />
+        {/* Logo — pleine largeur mobile, centré desktop */}
+        <div className="mb-8">
+          <img src="/logo.png" alt="DailyTrend" className="w-full max-w-xs mx-auto sm:max-w-[200px] md:max-w-[250px]" />
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-10">
