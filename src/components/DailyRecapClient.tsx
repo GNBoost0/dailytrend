@@ -74,32 +74,12 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
 
         <div className="flex items-center gap-3 mb-4">
           <div className="relative flex items-center gap-2">
-            <span className="text-lg">📅</span>
-            <select
-              value={recap.date}
-              onChange={(e) => {
-                const idx = recaps.findIndex(r => r.date === e.target.value);
-                if (idx >= 0) setActiveIdx(idx);
-              }}
-              className="text-[12px] font-bold rounded-xl px-4 py-2 appearance-none cursor-pointer transition-all hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-              style={{
-                background: 'var(--accent)',
-                color: 'white',
-                border: 'none',
-                backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")",
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'right 10px center',
-                paddingRight: '32px',
-              }}
-            >
-              {recaps.map(r => (
-                <option key={r.date} value={r.date}>
-                  {formatDate(r.date)}
-                </option>
-              ))}
-            </select>
-          </div>
-          <DateTooltip />
+            <DateDropdown value={recap.date} recaps={recaps} onChange={(date) => {
+            const idx = recaps.findIndex(r => r.date === date);
+            if (idx >= 0) setActiveIdx(idx);
+          }} />
+        </div>
+        <DateTooltip />
         </div>
 
         {/* Flux continu */}
@@ -149,6 +129,79 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function DateDropdown({ value, recaps, onChange }: { value: string; recaps: RecapEntry[]; onChange: (date: string) => void }) {
+  const [open, setOpen] = useState(false);
+
+  const displayDate = (() => {
+    try { return new Date(value).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric', month: 'long' }); }
+    catch { return value; }
+  })();
+
+  // Grouper les récaps par mois
+  const grouped = recaps.reduce((acc, r) => {
+    const month = (() => { try { return new Date(r.date).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }); } catch { return r.date; } })();
+    if (!acc[month]) acc[month] = [];
+    acc[month].push(r);
+    return acc;
+  }, {} as Record<string, RecapEntry[]>);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen(!open)}
+        onBlur={() => setTimeout(() => setOpen(false), 200)}
+        className="flex items-center gap-2 text-[12px] font-bold rounded-xl px-4 py-2 transition-all hover:shadow-md focus:outline-none"
+        style={{ background: 'var(--accent)', color: 'white' }}
+      >
+        <span>📅</span>
+        <span>{displayDate}</span>
+        <svg className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 9l6 6 6-6" /></svg>
+      </button>
+
+      {open && (
+        <div
+          className="absolute left-0 top-full mt-2 z-50 rounded-xl shadow-2xl overflow-hidden"
+          style={{ background: 'var(--bg-primary)', border: '1px solid var(--accent)', minWidth: '220px' }}
+        >
+          <div className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider" style={{ background: 'var(--accent)', color: 'white' }}>
+            📆 Sélectionner une date
+          </div>
+          <div className="max-h-64 overflow-y-auto p-1">
+            {Object.entries(grouped).map(([month, entries]) => (
+              <div key={month}>
+                <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--text-muted)' }}>
+                  {month}
+                </div>
+                {entries.map(r => {
+                  const dayStr = (() => {
+                    try { return new Date(r.date).toLocaleDateString('fr-FR', { weekday: 'short', day: 'numeric' }); }
+                    catch { return r.date; }
+                  })();
+                  const isActive = r.date === value;
+                  return (
+                    <button
+                      key={r.date}
+                      onClick={() => { onChange(r.date); setOpen(false); }}
+                      className="w-full text-left px-3 py-2 rounded-lg text-[12px] font-medium transition-all hover:translate-x-1"
+                      style={{
+                        background: isActive ? 'var(--accent)' : 'transparent',
+                        color: isActive ? 'white' : 'var(--text-primary)',
+                      }}
+                    >
+                      <span className="mr-2">{isActive ? '✅' : '📄'}</span>
+                      {dayStr} <span style={{ color: isActive ? 'rgba(255,255,255,0.7)' : 'var(--text-muted)', fontWeight: 400 }}>— {r.articles.length} article{r.articles.length > 1 ? 's' : ''}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
