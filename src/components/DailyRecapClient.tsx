@@ -73,30 +73,33 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
         </div>
 
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-[11px] font-medium" style={{ color: 'var(--text-muted)' }}>📅</span>
-          <select
-            value={recap.date}
-            onChange={(e) => {
-              const idx = recaps.findIndex(r => r.date === e.target.value);
-              if (idx >= 0) setActiveIdx(idx);
-            }}
-            className="text-[12px] font-medium rounded-lg px-3 py-1.5 appearance-none cursor-pointer transition-all"
-            style={{
-              background: 'var(--bg-secondary)',
-              color: 'var(--text-primary)',
-              border: '1px solid var(--border)',
-              backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")",
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'right 8px center',
-              paddingRight: '28px',
-            }}
-          >
-            {recaps.map(r => (
-              <option key={r.date} value={r.date}>
-                {formatDate(r.date)}
-              </option>
-            ))}
-          </select>
+          <div className="relative flex items-center gap-2">
+            <span className="text-lg">📅</span>
+            <select
+              value={recap.date}
+              onChange={(e) => {
+                const idx = recaps.findIndex(r => r.date === e.target.value);
+                if (idx >= 0) setActiveIdx(idx);
+              }}
+              className="text-[12px] font-bold rounded-xl px-4 py-2 appearance-none cursor-pointer transition-all hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+              style={{
+                background: 'var(--accent)',
+                color: 'white',
+                border: 'none',
+                backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")",
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right 10px center',
+                paddingRight: '32px',
+              }}
+            >
+              {recaps.map(r => (
+                <option key={r.date} value={r.date}>
+                  {formatDate(r.date)}
+                </option>
+              ))}
+            </select>
+          </div>
+          <DateTooltip />
         </div>
 
         {/* Flux continu */}
@@ -130,7 +133,7 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
                       <span>{getTopicName(article.topic)}</span>
                     </div>
                   </div>
-                  <div className="shrink-0 pr-1 sm:hidden">
+                  <div className="shrink-0 pr-1">
                     <span className="text-[11px] font-semibold animate-pulse" style={{ color: 'var(--accent)' }}>Lire →</span>
                   </div>
                 </div>
@@ -146,5 +149,30 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function DateTooltip() {
+  const [show, setShow] = useState(false);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setShow(!show)}
+        onBlur={() => setTimeout(() => setShow(false), 200)}
+        className="w-6 h-6 rounded-full flex items-center justify-center text-xs transition-all hover:scale-110 focus:outline-none"
+        style={{ background: 'var(--bg-secondary)', color: 'var(--text-muted)', border: '1px solid var(--border)' }}
+      >
+        <span className="inline-block" style={{ animation: 'glow 2s ease-in-out infinite' }}>ℹ️</span>
+      </button>
+      {show && (
+        <div
+          className="absolute left-0 top-8 z-50 w-56 rounded-xl p-3 text-xs leading-relaxed shadow-xl"
+          style={{ background: 'var(--bg-primary)', border: '1px solid var(--accent)', color: 'var(--text-secondary)' }}
+        >
+          💡 Sélectionne une date pour voir le récap de cette journée. Par défaut, c&apos;est le récap du jour qui s&apos;affiche.
+        </div>
+      )}
+    </div>
   );
 }

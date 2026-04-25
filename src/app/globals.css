@@ -102,6 +102,11 @@
   100% { transform: translateX(0); }
 }
 
+@keyframes glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+}
+
 .carousel-scroll {
   animation: carouselHint 3s ease-in-out 2s 1;
 }

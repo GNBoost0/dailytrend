@@ -65,7 +65,7 @@ export default function ArticleCard({ article, variant = 'card' }: Props) {
             <span>{date}</span><span>·</span><span>{article.readingTime} min</span>
           </div>
         </div>
-        <div className="shrink-0 pr-1 sm:hidden">
+        <div className="shrink-0 pr-1">
           <span className="text-[11px] font-semibold animate-pulse" style={{color:'var(--accent)'}}>Lire →</span>
         </div>
       </div>
