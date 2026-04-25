@@ -72,9 +72,32 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
           )}
         </div>
 
-        <p className="text-[11px] font-medium mb-4" style={{ color: 'var(--text-muted)' }}>
-          📅 {formatDate(recap.date)}
-        </p>
+        <div className="flex items-center gap-3 mb-4">
+          <span className="text-[11px] font-medium" style={{ color: 'var(--text-muted)' }}>📅</span>
+          <select
+            value={recap.date}
+            onChange={(e) => {
+              const idx = recaps.findIndex(r => r.date === e.target.value);
+              if (idx >= 0) setActiveIdx(idx);
+            }}
+            className="text-[12px] font-medium rounded-lg px-3 py-1.5 appearance-none cursor-pointer transition-all"
+            style={{
+              background: 'var(--bg-secondary)',
+              color: 'var(--text-primary)',
+              border: '1px solid var(--border)',
+              backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E\")",
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'right 8px center',
+              paddingRight: '28px',
+            }}
+          >
+            {recaps.map(r => (
+              <option key={r.date} value={r.date}>
+                {formatDate(r.date)}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Flux continu */}
         <div className="space-y-4">
@@ -94,9 +117,9 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
                 {' — '}{article.description}
               </p>
               {/* Carte compacte style "À lire aussi" */}
-              <Link href={`/${article.topic}/${article.slug}`} className="group block py-2 transition-all hover:translate-x-1" style={{ borderBottom: '1px solid var(--border)' }}>
+              <Link href={`/${article.topic}/${article.slug}`} className="group block py-2 transition-all hover:translate-x-1 active:scale-[0.98] sm:active:scale-100 cursor-pointer" style={{ borderBottom: '1px solid var(--border)' }}>
                 <div className="flex gap-4">
-                  <div className="w-24 h-16 shrink-0 rounded-lg overflow-hidden" style={{ background: 'var(--bg-secondary)' }}>
+                  <div className="w-24 h-16 shrink-0 rounded-lg overflow-hidden transition-transform group-hover:scale-105 group-active:scale-95" style={{ background: 'var(--bg-secondary)' }}>
                     <img src={article.image} alt="" className="w-full h-full object-cover" />
                   </div>
                   <div className="min-w-0 flex-1">

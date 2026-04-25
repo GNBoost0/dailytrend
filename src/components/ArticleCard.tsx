@@ -46,9 +46,9 @@ export default function ArticleCard({ article, variant = 'card' }: Props) {
   );
 
   if (variant === 'compact') return (
-    <Link href={`/${article.topic}/${article.slug}`} className="group block py-3 last:border-0 transition-all hover:translate-x-1" style={{borderBottom:'1px solid var(--border)'}}>
+    <Link href={`/${article.topic}/${article.slug}`} className="group block py-3 last:border-0 transition-all hover:translate-x-1 active:scale-[0.98] sm:active:scale-100 cursor-pointer" style={{borderBottom:'1px solid var(--border)'}}>
       <div className="flex gap-4">
-        <div className="w-24 h-16 shrink-0 rounded-lg overflow-hidden" style={{background:'var(--bg-secondary)'}}>
+        <div className="w-24 h-16 shrink-0 rounded-lg overflow-hidden transition-transform group-hover:scale-105 group-active:scale-95" style={{background:'var(--bg-secondary)'}}>
           {hasImage ? (
             <img src={article.image} alt="" className="w-full h-full object-cover" />
           ) : (
