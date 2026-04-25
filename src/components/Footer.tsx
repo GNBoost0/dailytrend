@@ -5,16 +5,14 @@ import { topics } from '@/lib/topics';
 
 export default function Footer() {
   return (
-    <footer className="mt-20 bg-[var(--bg-secondary)] border-t border-[var(--border)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-          <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-3">
-              <img src="/logo.png" alt="DailyTrend" className="h-7 w-7 rounded-md" />
-              <span className="text-sm font-extrabold" style={{color:'var(--text-primary)'}}>Daily<span style={{color:'var(--accent)'}}>Trend</span></span>
-            </Link>
-            <p className="text-xs leading-relaxed" style={{color:'var(--text-muted)'}}>L'actu tech & finance sans bullshit. Chaque jour.</p>
-          </div>
+    <footer className="mt-20 border-t border-[var(--border)]" style={{background:'var(--bg-secondary)'}}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Logo — plein écran mobile, centré desktop */}
+        <div className="flex justify-center mb-8">
+          <img src="/logo.png" alt="DailyTrend" className="w-2/3 sm:w-48 md:w-56" />
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-10">
           <div>
             <h4 className="text-[11px] font-semibold uppercase tracking-wider mb-3" style={{color:'var(--text-muted)'}}>Rubriques</h4>
             {topics.map(t => (
@@ -27,7 +25,7 @@ export default function Footer() {
             <Link href="/contact" className="block text-xs py-1 transition-colors hover:opacity-80" style={{color:'var(--text-secondary)'}}>Contact</Link>
             <Link href="/mentions-legales" className="block text-xs py-1 transition-colors hover:opacity-80" style={{color:'var(--text-secondary)'}}>Mentions légales</Link>
           </div>
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <h4 className="text-[11px] font-semibold uppercase tracking-wider mb-3" style={{color:'var(--text-muted)'}}>Newsletter</h4>
             <p className="text-xs mb-2" style={{color:'var(--text-muted)'}}>Le récap quotidien dans votre boîte.</p>
             <form className="flex gap-1.5" onSubmit={e => e.preventDefault()}>
