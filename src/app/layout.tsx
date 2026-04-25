@@ -31,9 +31,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       <head>
         <link rel="icon" href="/logo-header.png" />
-        <link rel="alternate" type="application/rss+xml" title="DailyTrend RSS" href="/rss.xml" />
+        <link rel="apple-touch-icon" href="/logo-header.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#f07000" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="DailyTrend" />
+        <meta name="application-name" content="DailyTrend" />
       </head>
       <body className="min-h-screen flex flex-col">
         <AdSenseScript />

@@ -1,28 +1,29 @@
 import { NextResponse } from 'next/server';
 
-// URL du Google Apps Script Web App — à configurer après déploiement du Sheet
-const APPS_SCRIPT_URL = process.env.DT_APPS_SCRIPT_URL || '';
+// Google Apps Script Web App URL
+const APPS_SCRIPT_URL = process.env.DT_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbw_R9ILYYBguy_6eeVfAO4DflWdek8cIMfTwfgcfDfxbrY4YISvtdRwWpJDQI_xSrVr3Q/exec';
 
 export async function POST(request: Request) {
-  if (!APPS_SCRIPT_URL) {
-    // Mode dégradé : pas de backend configuré, on accepte silencieusement
-    return NextResponse.json({ status: 'ok', message: 'No backend configured' });
-  }
-
   try {
     const body = await request.json();
     
     const resp = await fetch(APPS_SCRIPT_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'text/plain' },
       body: JSON.stringify(body),
+      redirect: 'follow',
     });
 
-    const data = await resp.json();
-    return NextResponse.json(data);
+    const text = await resp.text();
+    try {
+      const data = JSON.parse(text);
+      return NextResponse.json(data);
+    } catch {
+      return NextResponse.json({ status: 'ok', raw: text });
+    }
   } catch (err) {
     return NextResponse.json(
-      { status: 'error', message: 'Proxy error' },
+      { status: 'error', message: (err as Error).message },
       { status: 500 }
     );
   }
