@@ -1,22 +1,19 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ArticleCard from '@/components/ArticleCard';
-import Breadcrumb from '@/components/Breadcrumb';
-import { AdBanner } from '@/components/Adsense';
 import { getTopicBySlug } from '@/lib/topics';
-import { getArticlesByTopic, getAllArticles } from '@/lib/articles';
+import { getArticlesByTopic } from '@/lib/articles';
 
 export const dynamicParams = false;
-
 export async function generateStaticParams() {
-  return [{ slug: 'ia' }, { slug: 'crypto' }, { slug: 'cyber' }, { slug: 'bien-etre' }, { slug: 'gaming' }];
+  return [{slug:'ia'},{slug:'crypto'},{slug:'cyber'},{slug:'bien-etre'},{slug:'gaming'}];
 }
-
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const topic = getTopicBySlug(params.slug);
   if (!topic) return {};
-  return { title: `${topic.name} — Articles & Actualités`, description: topic.description };
+  return { title: `${topic.name} — Trend Pulse`, description: topic.description };
 }
 
 export default function TopicPage({ params }: { params: { slug: string } }) {
@@ -28,50 +25,39 @@ export default function TopicPage({ params }: { params: { slug: string } }) {
     <>
       <Header />
       <main className="flex-1">
-        <div className={`relative bg-gradient-to-br ${topic.color} overflow-hidden`}>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent" />
-          <div className="absolute inset-0 flex items-center justify-center opacity-10">
-            <span className="text-[150px]">{topic.icon}</span>
-          </div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16">
-            <Breadcrumb items={[
-              { label: 'Accueil', href: '/' },
-              { label: topic.name },
-            ]} />
-            <div className="flex items-center gap-5 mb-4">
-              <span className="text-7xl">{topic.icon}</span>
-              <div>
-                <h1 className="text-4xl sm:text-5xl font-black text-white">{topic.name}</h1>
-                <p className="text-white/70 mt-2 text-lg max-w-xl">{topic.description}</p>
-              </div>
+        {/* Hero */}
+        <div className="border-b border-white/[0.04]" style={{background: `linear-gradient(135deg, var(--bg-primary), var(--bg-secondary))`}}>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="flex items-center gap-2 mb-3 text-xs text-gray-600">
+              <Link href="/" className="hover:text-white transition-colors">Accueil</Link>
+              <span>/</span>
+              <span className="text-gray-400">{topic.name}</span>
             </div>
-            <div className="mt-6 flex items-center gap-4 text-sm text-white/50">
-              <span>{articles.length} article{articles.length > 1 ? 's' : ''}</span>
+            <div className="flex items-center gap-4">
+              <span className="text-5xl sm:text-6xl">{topic.icon}</span>
+              <div>
+                <h1 className="text-2xl sm:text-3xl font-extrabold text-white">{topic.name}</h1>
+                <p className="text-sm text-gray-500 mt-1 max-w-lg">{topic.description}</p>
+              </div>
             </div>
           </div>
         </div>
 
-        <AdBanner />
-
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+        {/* Articles */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {articles.length > 0 ? (
             <>
-              {articles[0] && <div className="mb-8"><ArticleCard article={articles[0]} featured /></div>}
+              <ArticleCard article={articles[0]} variant="hero" />
               {articles.length > 1 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {articles.slice(1).map(article => (
-                    <ArticleCard key={article.slug} article={article} />
-                  ))}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
+                  {articles.slice(1).map(a => <ArticleCard key={a.slug} article={a} />)}
                 </div>
               )}
             </>
           ) : (
-            <div className="text-center py-20">
-              <span className="text-6xl block mb-4">{topic.icon}</span>
-              <p className="text-gray-500 text-lg">Les articles arrivent bientôt dans cette rubrique...</p>
-            </div>
+            <p className="text-center text-gray-600 py-20">Bientôt des articles ici…</p>
           )}
-        </section>
+        </div>
       </main>
       <Footer />
     </>

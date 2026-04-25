@@ -6,81 +6,69 @@ import { topics } from '@/lib/topics';
 
 export default function Home() {
   const articles = getAllArticles();
-  const featured = articles[0];
-  const rest = articles.slice(1, 7);
-  const perTopic = topics.map(t => ({
-    ...t,
-    articles: articles.filter(a => a.topic === t.slug).slice(0, 3),
-  })).filter(t => t.articles.length > 0);
+  const hero = articles[0];
+  const grid = articles.slice(1, 7);
 
   return (
     <>
       <Header />
       <main className="flex-1">
         {/* Hero */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 pt-10">
-          {featured && <ArticleCard article={featured} featured />}
-        </section>
+        {hero && (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+            <ArticleCard article={hero} variant="hero" />
+          </section>
+        )}
 
-        {/* Derniers articles */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <h2 className="text-2xl font-extrabold text-white">Derniers articles</h2>
-              <p className="text-sm text-gray-500 mt-1">Les actus fraîches du jour</p>
+        {/* Grid */}
+        {grid.length > 0 && (
+          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div className="flex items-center gap-3 mb-6">
+              <h2 className="text-xs font-bold text-gray-500 uppercase tracking-wider">Derniers articles</h2>
+              <div className="flex-1 h-px bg-white/[0.04]" />
             </div>
-            <div className="h-px flex-1 ml-6 bg-gradient-to-r from-white/10 to-transparent" />
-          </div>
-          {rest.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {rest.map(article => (
-                <ArticleCard key={`${article.topic}-${article.slug}`} article={article} />
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-500">Les articles arrivent bientôt...</p>
-          )}
-        </section>
-
-        {/* Topics sections */}
-        {perTopic.map(section => (
-          <section key={section.id} className="max-w-7xl mx-auto px-4 sm:px-6 py-12 border-t border-white/5">
-            <div className="flex items-center gap-4 mb-8">
-              <span className="text-3xl">{section.icon}</span>
-              <div>
-                <h2 className="text-2xl font-extrabold text-white">{section.name}</h2>
-                <p className="text-sm text-gray-500">{section.description}</p>
-              </div>
-              <a href={`/${section.slug}`} className="ml-auto text-sm text-brand-400 hover:text-brand-300 font-medium transition-colors">
-                Tout voir →
-              </a>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {section.articles.map(article => (
-                <ArticleCard key={article.slug} article={article} />
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {grid.map(a => <ArticleCard key={`${a.topic}-${a.slug}`} article={a} />)}
             </div>
           </section>
-        ))}
+        )}
 
-        {/* Topics overview */}
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16 border-t border-white/5">
-          <div className="text-center mb-10">
-            <h2 className="text-3xl font-extrabold text-white mb-2">5 univers, un seul endroit</h2>
-            <p className="text-gray-500">Choisissez votre dose d'actualité</p>
-          </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {topics.map(topic => (
-              <a
-                key={topic.id}
-                href={`/${topic.slug}`}
-                className={`group glass-card p-6 text-center hover:border-white/20`}
-              >
-                <span className="text-4xl block mb-3 group-hover:scale-110 transition-transform duration-300">{topic.icon}</span>
-                <h3 className="text-sm font-bold text-white mb-1">{topic.name}</h3>
-                <p className="text-xs text-gray-500 leading-relaxed">{topic.description.slice(0, 60)}…</p>
-              </a>
-            ))}
+        {/* Topic strips */}
+        {topics.map(topic => {
+          const topicArticles = articles.filter(a => a.topic === topic.slug);
+          if (topicArticles.length === 0) return null;
+          return (
+            <section key={topic.id} className="border-t border-white/[0.04]">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xl">{topic.icon}</span>
+                    <h2 className="text-sm font-bold text-white">{topic.name}</h2>
+                  </div>
+                  <Link href={`/${topic.slug}`} className="text-[12px] font-medium text-indigo-400 hover:text-indigo-300 transition-colors">
+                    Tout voir →
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                  {topicArticles.slice(0, 3).map(a => <ArticleCard key={a.slug} article={a} />)}
+                </div>
+              </div>
+            </section>
+          );
+        })}
+
+        {/* Topics bar */}
+        <section className="border-t border-white/[0.04]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+              {topics.map(topic => (
+                <Link key={topic.id} href={`/${topic.slug}`}
+                  className="group flex flex-col items-center gap-2 p-5 rounded-xl bg-[#0c0c10] border border-white/[0.04] hover:border-white/[0.08] hover:bg-[#0f0f14] transition-all">
+                  <span className="text-3xl group-hover:scale-110 transition-transform">{topic.icon}</span>
+                  <span className="text-xs font-bold text-gray-400 group-hover:text-white transition-colors">{topic.name}</span>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
       </main>
@@ -88,3 +76,5 @@ export default function Home() {
     </>
   );
 }
+
+import Link from 'next/link';

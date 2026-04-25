@@ -1,9 +1,8 @@
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import Breadcrumb from '@/components/Breadcrumb';
 import ArticleCard from '@/components/ArticleCard';
-import { AdBanner, AdInArticle, AdSidebar } from '@/components/Adsense';
 import { getArticle, getRelatedArticles, getAllArticles } from '@/lib/articles';
 import { getTopicBySlug, topics } from '@/lib/topics';
 import { remark } from 'remark';
@@ -12,110 +11,103 @@ import html from 'remark-html';
 export async function generateStaticParams() {
   return getAllArticles().map(a => ({ topic: a.topic, slug: a.slug }));
 }
-
 export async function generateMetadata({ params }: { params: { topic: string; slug: string } }) {
-  const article = getArticle(params.topic, params.slug);
-  if (!article) return {};
+  const a = getArticle(params.topic, params.slug);
+  if (!a) return {};
   return {
-    title: article.title,
-    description: article.description,
-    openGraph: { title: article.title, description: article.description, type: 'article', publishedTime: article.date, authors: [article.author], tags: article.tags },
-    twitter: { card: 'summary_large_image', title: article.title, description: article.description },
+    title: a.title,
+    description: a.description,
+    openGraph: { title: a.title, description: a.description, type: 'article', publishedTime: a.date },
   };
 }
 
-async function markdownToHtml(content: string): Promise<string> {
-  const result = await remark().use(html).process(content);
-  return result.toString();
-}
+async function md(s: string) { return (await remark().use(html).process(s)).toString(); }
 
 export default async function ArticlePage({ params }: { params: { topic: string; slug: string } }) {
   const article = getArticle(params.topic, params.slug);
   if (!article) notFound();
   const topic = getTopicBySlug(params.topic);
   const related = getRelatedArticles(article);
-  const contentHtml = await markdownToHtml(article.content);
-  const parts = contentHtml.split(/(<\/p>)/);
-  const mid = Math.ceil(parts.length / 2);
-  const firstHalf = parts.slice(0, mid * 2).join('');
-  const secondHalf = parts.slice(mid * 2).join('');
-  const dateObj = new Date(article.date);
-  const dateStr = dateObj.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-  const jsonLd = {
-    '@context': 'https://schema.org', '@type': 'Article',
-    headline: article.title, description: article.description, datePublished: article.date,
-    author: { '@type': 'Person', name: article.author },
-    publisher: { '@type': 'Organization', name: 'Trend Pulse' },
-    mainEntityOfPage: `https://trend-pulse.vercel.app/${params.topic}/${params.slug}`,
-  };
+  const html_ = await md(article.content);
+  const ps = html_.split(/(<\/p>)/);
+  const mid = Math.ceil(ps.length / 2);
+  const p1 = ps.slice(0, mid*2).join('');
+  const p2 = ps.slice(mid*2).join('');
+  const dateStr = new Date(article.date).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
+  const ld = { '@context':'https://schema.org','@type':'Article', headline:article.title, description:article.description, datePublished:article.date, author:{'@type':'Person',name:article.author}, publisher:{'@type':'Organization',name:'Trend Pulse'} };
 
   return (
     <>
       <Header />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(ld)}} />
       <main className="flex-1">
-        <div className={`relative bg-gradient-to-br ${topic?.color || 'from-brand-500 to-brand-700'} overflow-hidden`}>
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent" />
-          <div className="absolute inset-0 flex items-center justify-center opacity-10">
-            <span className="text-[200px]">{topic?.icon}</span>
-          </div>
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-6 pt-12 pb-20">
-            <Breadcrumb items={[
-              { label: 'Accueil', href: '/' },
-              { label: topic?.name || '', href: `/${params.topic}` },
-              { label: article.title },
-            ]} />
-            <div className="flex flex-wrap gap-2 mb-5">
-              {article.tags.map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full text-xs font-medium bg-white/15 text-white/90 backdrop-blur-sm">{tag}</span>
+        {/* Hero */}
+        <div className="border-b border-white/[0.04]">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
+            <div className="flex items-center gap-2 mb-4 text-xs text-gray-600">
+              <Link href="/" className="hover:text-white transition-colors">Accueil</Link><span>/</span>
+              <Link href={`/${params.topic}`} className="hover:text-white transition-colors">{topic?.name}</Link><span>/</span>
+              <span className="text-gray-500 truncate">{article.title}</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5 mb-4">
+              {article.tags.map(t => (
+                <span key={t} className="px-2 py-0.5 rounded bg-white/[0.05] text-[11px] font-medium text-gray-400">{t}</span>
               ))}
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.15] mb-5">{article.title}</h1>
-            <p className="text-lg sm:text-xl text-white/80 leading-relaxed max-w-3xl">{article.description}</p>
-            <div className="flex flex-wrap items-center gap-4 mt-8 text-sm text-white/60">
-              <span className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-xs font-bold text-white">TP</div>
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-[1.2] mb-4">{article.title}</h1>
+            <p className="text-base sm:text-lg text-gray-400 leading-relaxed">{article.description}</p>
+            <div className="flex items-center gap-4 mt-6 text-xs text-gray-600">
+              <span className="flex items-center gap-1.5">
+                <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-[9px] font-bold text-indigo-400">TP</div>
                 {article.author}
               </span>
-              <span className="w-1 h-1 rounded-full bg-white/30" /><time>{dateStr}</time>
-              <span className="w-1 h-1 rounded-full bg-white/30" /><span>{article.readingTime} min de lecture</span>
+              <span>{dateStr}</span>
+              <span>{article.readingTime} min de lecture</span>
             </div>
           </div>
         </div>
-        <AdBanner />
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
-          <div className="flex flex-col lg:flex-row gap-10">
+
+        {/* Content */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="flex flex-col lg:flex-row gap-12">
             <article className="flex-1 max-w-3xl prose-article">
-              <div dangerouslySetInnerHTML={{ __html: firstHalf }} />
-              <AdInArticle />
-              <div dangerouslySetInnerHTML={{ __html: secondHalf }} />
+              <div dangerouslySetInnerHTML={{__html: p1}} />
+              {/* In-article ad placeholder */}
+              <div className="my-10 py-6 border-y border-white/[0.04] text-center text-xs text-gray-700">
+                Espace publicitaire
+              </div>
+              <div dangerouslySetInnerHTML={{__html: p2}} />
             </article>
-            <aside className="lg:w-[320px] shrink-0 space-y-8">
-              <AdSidebar />
+
+            <aside className="lg:w-[280px] shrink-0 space-y-8">
+              {/* Ad */}
+              <div className="aspect-[4/3] rounded-lg bg-[#0c0c10] border border-white/[0.04] flex items-center justify-center text-xs text-gray-700">
+                Espace publicitaire
+              </div>
+
+              {/* Related */}
               {related.length > 0 && (
-                <div className="glass-card p-5">
-                  <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <span className="w-1 h-4 bg-brand-500 rounded-full" />À lire aussi
-                  </h3>
-                  <div>{related.map(a => <ArticleCard key={a.slug} article={a} compact />)}</div>
+                <div>
+                  <h3 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-3">À lire aussi</h3>
+                  {related.map(a => <ArticleCard key={a.slug} article={a} variant="compact" />)}
                 </div>
               )}
-              <div className="glass-card p-5">
-                <h3 className="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <span className="w-1 h-4 bg-brand-500 rounded-full" />Rubriques
-                </h3>
-                <div className="space-y-1">
+
+              {/* Topics */}
+              <div>
+                <h3 className="text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-3">Rubriques</h3>
+                <div className="space-y-0.5">
                   {topics.map(t => (
-                    <a key={t.id} href={`/${t.slug}`} className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-white/5 transition-colors group">
-                      <span className="text-lg group-hover:scale-110 transition-transform">{t.icon}</span>
-                      <span className="text-sm text-gray-400 group-hover:text-white transition-colors">{t.name}</span>
-                    </a>
+                    <Link key={t.id} href={`/${t.slug}`} className="flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-white/[0.03] transition-colors group">
+                      <span className="text-sm group-hover:scale-110 transition-transform">{t.icon}</span>
+                      <span className="text-xs text-gray-500 group-hover:text-white transition-colors">{t.name}</span>
+                    </Link>
                   ))}
                 </div>
               </div>
             </aside>
           </div>
-        </section>
+        </div>
       </main>
       <Footer />
     </>
