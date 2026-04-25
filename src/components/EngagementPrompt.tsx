@@ -61,17 +61,15 @@ export default function EngagementPrompt() {
         applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
       });
 
-      // Envoyer au Google Sheet via Apps Script
+      // Envoyer à notre API (MongoDB)
       try {
-        const APPS_SCRIPT_URL = '/api/push-subscribe'; // Proxy pour éviter CORS
-        await fetch(APPS_SCRIPT_URL, {
+        await fetch('/api/push-subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ action: 'subscribe', subscription: subscription.toJSON() }),
         });
       } catch (e) {
-        // Fallback: sauvegarder localement
-        localStorage.setItem('dt-push-sub', JSON.stringify(subscription));
+        // Fallback silencieux
       }
       localStorage.setItem('dt-engagement', 'notifications');
     } catch (e) {
