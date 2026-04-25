@@ -2,25 +2,27 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ArticleCard from '@/components/ArticleCard';
+import DailyRecap from '@/components/DailyRecap';
 import { getAllArticles } from '@/lib/articles';
+import { getAllRecaps } from '@/lib/recaps';
 import { topics } from '@/lib/topics';
 
 export default function Home() {
   const articles = getAllArticles();
-  const hero = articles[0];
+  const recaps = getAllRecaps();
 
   return (
     <>
       <Header />
       <main className="flex-1">
-        {hero && (
+        {/* Récap du rédacteur en chef */}
+        {recaps.length > 0 && <DailyRecap recaps={recaps} />}
+
+        {/* Si pas de récap, afficher le hero classique */}
+        {recaps.length === 0 && articles[0] && (
           <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2">
-            <div className="flex items-center gap-3 mb-5">
-              <span className="px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider" style={{background:'var(--tag-bg)',color:'var(--tag-text)'}}>Articles conseillés du jour</span>
-              <div className="flex-1 h-px" style={{background:'var(--border)'}} />
-            </div>
             <div className="max-w-md">
-              <ArticleCard article={hero} variant="card" />
+              <ArticleCard article={articles[0]} variant="card" />
             </div>
           </section>
         )}
@@ -41,7 +43,11 @@ export default function Home() {
                   <Link href={`/${topic.slug}`} className="text-[12px] font-medium hover:opacity-80 transition-colors" style={{color:'var(--accent)'}}>Tout voir →</Link>
                 </div>
                 
-                <div className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory scrollbar-hide" style={{scrollbarWidth:'none'}}>
+                {/* Carousel simple — scroll natif */}
+                <div
+                  className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory carousel-scroll"
+                  style={{ scrollbarWidth: 'none', scrollBehavior: 'smooth' }}
+                >
                   {topicArticles.slice(0, 7).map(a => (
                     <div key={a.slug} className="snap-start shrink-0 w-[280px] sm:w-[300px]">
                       <ArticleCard article={a} variant="card" />
