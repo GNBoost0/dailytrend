@@ -3,10 +3,26 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { topics } from '@/lib/topics';
+import { consumeDeferredPrompt, onPromptAvailable } from '@/lib/pwa';
 import NotificationModal from './NotificationModal';
 
 export default function Footer() {
   const [notifOpen, setNotifOpen] = useState(false);
+
+  const handleInstall = () => {
+    const prompt = consumeDeferredPrompt();
+    if (prompt) {
+      prompt.prompt();
+    } else {
+      // Fallback : instructions manuelles
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        alert('📱 Sur iPhone/iPad : ouvre le menu de partage (icône ↗️ en bas) puis "Sur l\'écran d\'accueil"');
+      } else {
+        alert('📱 Ouvre le menu du navigateur (⋮ en haut à droite) puis "Installer l\'application" ou "Ajouter à l\'écran d\'accueil"');
+      }
+    }
+  };
 
   return (
     <>
@@ -53,11 +69,7 @@ export default function Footer() {
                   🔔 Notifications
                 </button>
                 <button
-                  onClick={() => {
-                    if ('serviceWorker' in navigator) {
-                      navigator.serviceWorker.register('/sw.js');
-                    }
-                  }}
+                  onClick={handleInstall}
                   className="px-4 py-2 text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity flex items-center gap-1.5"
                   style={{background:'var(--bg-primary)', color:'var(--text-secondary)', border:'1px solid var(--border)'}}
                 >

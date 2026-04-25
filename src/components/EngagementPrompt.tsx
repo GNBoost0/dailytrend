@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+import { onPromptAvailable, consumeDeferredPrompt } from '@/lib/pwa';
 
 const VAPID_PUBLIC_KEY = 'BJz_Xeqn5j15mWV3zJsOyF6WY76MAPvuUF56JRD7goZvVQ7GYqIhPgn1pYsw7vrhDF10UJ7qU807tG5OYDRNP3I';
 
@@ -18,16 +19,11 @@ type PromptStep = 'idle' | 'notifications' | 'homescreen' | 'done';
 export default function EngagementPrompt() {
   const [step, setStep] = useState<PromptStep>('idle');
   const [dismissed, setDismissed] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [hasPrompt, setHasPrompt] = useState(false);
 
-  // Écouter l'événement beforeinstallprompt (PWA)
+  // Écouter via le store partagé
   useEffect(() => {
-    const handler = (e: Event) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-    };
-    window.addEventListener('beforeinstallprompt', handler);
-    return () => window.removeEventListener('beforeinstallprompt', handler);
+    return onPromptAvailable(() => setHasPrompt(true));
   }, []);
 
   // Afficher le prompt notifications après 60s
@@ -76,8 +72,8 @@ export default function EngagementPrompt() {
       // L'utilisateur a refusé ou le navigateur ne supporte pas
     }
 
-    // Passer à l'étape homescreen
-    if (deferredPrompt) {
+    // Passer à l'étape homescreen si dispo
+    if (hasPrompt) {
       setTimeout(() => setStep('homescreen'), 800);
     } else {
       dismiss();
@@ -85,10 +81,18 @@ export default function EngagementPrompt() {
   };
 
   const addToHomescreen = async () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      const result = await deferredPrompt.userChoice;
-      setDeferredPrompt(null);
+    const prompt = consumeDeferredPrompt();
+    if (prompt) {
+      prompt.prompt();
+      await prompt.userChoice;
+    } else {
+      // Fallback instructions
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        alert('📱 Ouvre le menu de partage (↗️) puis "Sur l\'écran d\'accueil"');
+      } else {
+        alert('📱 Ouvre le menu du navigateur (⋮) puis "Installer l\'application"');
+      }
     }
     localStorage.setItem('dt-engagement', 'done');
     dismiss();
