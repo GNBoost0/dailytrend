@@ -74,7 +74,7 @@ export default function ArticleCard({ article, variant = 'card' }: Props) {
 
   return (
     <Link href={`/${article.topic}/${article.slug}`} className="group block">
-      <article className="tp-card h-full flex flex-col overflow-hidden">
+      <article className="tp-card h-full flex flex-col overflow-hidden transition-transform duration-300 sm:hover:scale-[1.03]">
         <div className="relative aspect-[16/10] overflow-hidden" style={{background:'var(--bg-secondary)'}}>
           {hasImage ? (
             <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
