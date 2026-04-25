@@ -2,7 +2,8 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ArticleCard from '@/components/ArticleCard';
-import DailyRecap from '@/components/DailyRecap';
+import DailyRecapCarousel from '@/components/DailyRecapCarousel';
+import TopicCarousel from '@/components/TopicCarousel';
 import { getAllArticles } from '@/lib/articles';
 import { getAllRecaps } from '@/lib/recaps';
 import { topics } from '@/lib/topics';
@@ -15,17 +16,8 @@ export default function Home() {
     <>
       <Header />
       <main className="flex-1">
-        {/* Récap du rédacteur en chef */}
-        {recaps.length > 0 && <DailyRecap recaps={recaps} />}
-
-        {/* Si pas de récap, afficher le hero classique */}
-        {recaps.length === 0 && articles[0] && (
-          <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2">
-            <div className="max-w-md">
-              <ArticleCard article={articles[0]} variant="card" />
-            </div>
-          </section>
-        )}
+        {/* Récap du jour — carrousel de cartes */}
+        {recaps.length > 0 && <DailyRecapCarousel recaps={recaps} />}
 
         {topics.map(topic => {
           const topicArticles = articles.filter(a => a.topic === topic.slug);
@@ -43,17 +35,7 @@ export default function Home() {
                   <Link href={`/${topic.slug}`} className="text-[12px] font-medium hover:opacity-80 transition-colors" style={{color:'var(--accent)'}}>Tout voir →</Link>
                 </div>
                 
-                {/* Carousel simple — scroll natif */}
-                <div
-                  className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory carousel-scroll"
-                  style={{ scrollbarWidth: 'none', scrollBehavior: 'smooth' }}
-                >
-                  {topicArticles.slice(0, 7).map(a => (
-                    <div key={a.slug} className="snap-start shrink-0 w-[280px] sm:w-[300px]">
-                      <ArticleCard article={a} variant="card" />
-                    </div>
-                  ))}
-                </div>
+                <TopicCarousel articles={topicArticles.slice(0, 7)} />
               </div>
             </section>
           );
