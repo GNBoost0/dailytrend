@@ -93,9 +93,19 @@ export default async function ArticlePage({ params }: { params: { topic: string;
                 <div className="grid grid-cols-2 gap-2">
                   {topics.map(t => (
                     <Link key={t.id} href={`/${t.slug}`}
-                      className="group flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl transition-all hover:opacity-90" style={{background:'var(--bg-secondary)',border:'1px solid var(--border)'}}>
-                      <span className="text-2xl group-hover:scale-110 transition-transform">{t.icon}</span>
-                      <span className="text-[11px] font-bold text-center leading-tight" style={{color:'var(--text-secondary)'}}>{t.name}</span>
+                      className="group relative overflow-hidden rounded-xl transition-all hover:opacity-90" style={{border:'1px solid var(--border)'}}>
+                      <div className="aspect-[4/3] relative">
+                        {t.image ? (
+                          <img src={t.image} alt={t.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                        ) : (
+                          <div className={`w-full h-full bg-gradient-to-br ${(t as any).color}`} />
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 flex flex-col items-center justify-end pb-2">
+                          <span className="text-xl mb-0.5 drop-shadow-lg">{t.icon}</span>
+                          <span className="text-[10px] font-bold text-white text-center leading-tight drop-shadow-md">{t.name}</span>
+                        </div>
+                      </div>
                     </Link>
                   ))}
                 </div>

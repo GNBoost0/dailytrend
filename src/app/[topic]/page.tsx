@@ -25,14 +25,21 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
     <>
       <Header />
       <main className="flex-1">
-        <div className="border-b" style={{background:'var(--hero-gradient)',borderColor:'var(--border)'}}>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        {/* Hero avec image de fond */}
+        <div className="relative border-b" style={{borderColor:'var(--border)'}}>
+          {topic.image && (
+            <div className="absolute inset-0">
+              <img src={topic.image} alt="" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-primary)]/90 via-[var(--bg-primary)]/70 to-[var(--bg-primary)]/50" />
+            </div>
+          )}
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div className="flex items-center gap-2 mb-3 text-xs" style={{color:'var(--text-muted)'}}>
               <Link href="/" className="hover:opacity-70">Accueil</Link><span>/</span>
               <span style={{color:'var(--text-secondary)'}}>{topic.name}</span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="text-5xl sm:text-6xl">{topic.icon}</span>
+              <span className="text-5xl sm:text-6xl drop-shadow-lg">{topic.icon}</span>
               <div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold" style={{color:'var(--text-primary)'}}>{topic.name}</h1>
                 <p className="text-sm mt-1 max-w-lg" style={{color:'var(--text-secondary)'}}>{topic.description}</p>

@@ -62,9 +62,19 @@ export default function Home() {
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
               {topics.map(topic => (
                 <Link key={topic.id} href={`/${topic.slug}`}
-                  className="group flex flex-col items-center justify-center gap-2 p-5 rounded-xl transition-all hover:opacity-90" style={{background:'var(--bg-secondary)',border:'1px solid var(--border)'}}>
-                  <span className="text-3xl group-hover:scale-110 transition-transform">{topic.icon}</span>
-                  <span className="text-xs font-bold text-center leading-tight" style={{color:'var(--text-secondary)'}}>{topic.name}</span>
+                  className="group relative overflow-hidden rounded-xl transition-all hover:opacity-90" style={{border:'1px solid var(--border)'}}>
+                  <div className="aspect-[4/3] relative">
+                    {topic.image ? (
+                      <img src={topic.image} alt={topic.name} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                    ) : (
+                      <div className={`w-full h-full bg-gradient-to-br ${(topic as any).color}`} />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                    <div className="absolute inset-0 flex flex-col items-center justify-end pb-3">
+                      <span className="text-2xl mb-1 drop-shadow-lg">{topic.icon}</span>
+                      <span className="text-[11px] font-bold text-white text-center leading-tight drop-shadow-md">{topic.name}</span>
+                    </div>
+                  </div>
                 </Link>
               ))}
             </div>
