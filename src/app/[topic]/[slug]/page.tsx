@@ -44,10 +44,9 @@ export default async function ArticlePage({ params }: { params: { topic: string;
           )}
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
             {/* Breadcrumb with text shadow */}
-            <div className="flex items-center gap-2 mb-4 text-xs" style={{color:'#ccc', textShadow:'0 1px 4px rgba(0,0,0,0.8)'}}>
-              <Link href="/" className="hover:text-white transition-colors">Accueil</Link><span>/</span>
-              <Link href={`/${params.topic}`} className="hover:text-white transition-colors">{topic?.name}</Link><span>/</span>
-              <span className="truncate text-gray-300">{article.title}</span>
+            <div className="flex items-center gap-2 mb-4 text-xs whitespace-nowrap overflow-hidden" style={{color:'#ccc', textShadow:'0 1px 4px rgba(0,0,0,0.8)'}}>
+              <Link href={`/${params.topic}`} className="hover:text-white transition-colors shrink-0">{topic?.icon} {topic?.name}</Link><span className="shrink-0">/</span>
+              <span className="truncate">{article.title}</span>
             </div>
             {/* Tags */}
             <div className="flex flex-wrap gap-1.5 mb-4">

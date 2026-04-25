@@ -32,8 +32,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter — en dessous */}
-        <div className="border-t border-[var(--border)] pt-6 mb-6">
+        {/* Newsletter — centrée */}
+        <div className="border-t border-[var(--border)] pt-6 mb-6 flex justify-center">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 max-w-lg">
             <div className="flex-1">
               <h4 className="text-sm font-bold mb-1" style={{color:'var(--text-primary)'}}>Newsletter</h4>

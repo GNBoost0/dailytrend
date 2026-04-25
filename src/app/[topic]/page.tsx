@@ -34,9 +34,8 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
             </div>
           )}
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10 text-center">
-            <div className="flex items-center justify-center gap-2 mb-4 text-xs" style={{color:'#ccc', textShadow:'0 1px 4px rgba(0,0,0,0.8)'}}>
-              <Link href="/" className="hover:text-white transition-colors">Accueil</Link><span>/</span>
-              <span className="text-gray-300">{topic.name}</span>
+            <div className="flex items-center justify-center gap-2 mb-4 text-xs whitespace-nowrap" style={{color:'#ccc', textShadow:'0 1px 4px rgba(0,0,0,0.8)'}}>
+              <span>{topic.icon} {topic.name}</span>
             </div>
             <span className="text-5xl sm:text-6xl mb-4 inline-block drop-shadow-2xl">{topic.icon}</span>
             <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-[1.2] mb-4 text-white" style={{textShadow:'0 2px 10px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.6)'}}>{topic.name}</h1>
