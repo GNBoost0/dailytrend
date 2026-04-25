@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Article } from '@/lib/articles';
 import { getTopicBySlug } from '@/lib/topics';
 
@@ -8,18 +9,23 @@ export default function ArticleCard({ article, variant = 'card' }: Props) {
   const topic = getTopicBySlug(article.topic);
   const d = new Date(article.date);
   const date = d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' });
+  const hasImage = !!article.image;
 
   if (variant === 'hero') return (
     <Link href={`/${article.topic}/${article.slug}`} className="group block">
       <article className="tp-card overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-5 min-h-[300px] sm:min-h-[340px]">
-          <div className={`lg:col-span-3 relative bg-gradient-to-br ${topic?.color} overflow-hidden`}>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-[120px] sm:text-[140px] opacity-[0.12] group-hover:opacity-[0.18] group-hover:scale-105 transition-all duration-700">{topic?.icon}</span>
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--bg-card)]/80 hidden lg:block" />
+          <div className="lg:col-span-3 relative overflow-hidden" style={{background: hasImage ? 'transparent' : undefined}}>
+            {hasImage ? (
+              <img src={article.image} alt={article.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            ) : (
+              <div className={`w-full h-full bg-gradient-to-br ${topic?.color} flex items-center justify-center`}>
+                <span className="text-[120px] sm:text-[140px] opacity-[0.15] group-hover:opacity-[0.22] transition-all duration-700">{topic?.icon}</span>
+              </div>
+            )}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--bg-card)] hidden lg:block" />
             <div className="absolute top-4 left-4">
-              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-black/40 backdrop-blur text-[11px] font-semibold text-white/90">
+              <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-black/50 backdrop-blur text-[11px] font-semibold text-white">
                 {topic?.icon} {topic?.name}
               </span>
             </div>
@@ -41,8 +47,14 @@ export default function ArticleCard({ article, variant = 'card' }: Props) {
   if (variant === 'compact') return (
     <Link href={`/${article.topic}/${article.slug}`} className="group block py-3 last:border-0" style={{borderBottom:'1px solid var(--border)'}}>
       <div className="flex gap-3">
-        <div className={`w-10 h-10 shrink-0 rounded-lg bg-gradient-to-br ${topic?.color} flex items-center justify-center`}>
-          <span className="text-base opacity-50">{topic?.icon}</span>
+        <div className="w-16 h-12 shrink-0 rounded-lg overflow-hidden" style={{background:'var(--bg-secondary)'}}>
+          {hasImage ? (
+            <img src={article.image} alt="" className="w-full h-full object-cover" />
+          ) : (
+            <div className={`w-full h-full bg-gradient-to-br ${topic?.color} flex items-center justify-center`}>
+              <span className="text-sm opacity-40">{topic?.icon}</span>
+            </div>
+          )}
         </div>
         <div className="min-w-0 flex-1">
           <h4 className="text-[13px] font-semibold leading-snug line-clamp-2 group-hover:text-indigo-500 transition-colors" style={{color:'var(--text-primary)'}}>
@@ -59,12 +71,16 @@ export default function ArticleCard({ article, variant = 'card' }: Props) {
   return (
     <Link href={`/${article.topic}/${article.slug}`} className="group block">
       <article className="tp-card h-full flex flex-col overflow-hidden">
-        <div className={`relative aspect-[16/10] bg-gradient-to-br ${topic?.color} overflow-hidden`}>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-5xl opacity-[0.15] group-hover:opacity-[0.22] group-hover:scale-110 transition-all duration-500">{topic?.icon}</span>
-          </div>
+        <div className="relative aspect-[16/10] overflow-hidden" style={{background:'var(--bg-secondary)'}}>
+          {hasImage ? (
+            <img src={article.image} alt={article.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          ) : (
+            <div className={`w-full h-full bg-gradient-to-br ${topic?.color} flex items-center justify-center`}>
+              <span className="text-5xl opacity-[0.15] group-hover:opacity-[0.22] group-hover:scale-110 transition-all duration-500">{topic?.icon}</span>
+            </div>
+          )}
           <div className="absolute top-3 left-3">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-black/40 backdrop-blur text-[10px] font-semibold text-white/90">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-black/40 backdrop-blur text-[10px] font-semibold text-white">
               {topic?.icon} {topic?.name}
             </span>
           </div>

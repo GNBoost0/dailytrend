@@ -4,7 +4,7 @@ description: "Google investit 40 milliards de dollars dans Anthropic, créateur 
 date: "2026-04-25"
 topic: "ia"
 tags: ["Google", "Anthropic", "Claude", "IA", "Investissement", "Intelligence Artificielle"]
-image: "/images/ia/google-investit-40-milliards-anthropic.jpg"
+image: "https://image.pollinations.ai/prompt/futuristic%20AI%20data%20center%20with%20glowing%20servers%20and%20neural%20network%20visualization%2C%20dark%20blue%20and%20purple%20lighting%2C%20tech%20corporate?width=1200&height=630&seed=google-investit-40-milliards-anthropic&nologo=true"
 author: "Trend Pulse"
 readingTime: 9
 ---

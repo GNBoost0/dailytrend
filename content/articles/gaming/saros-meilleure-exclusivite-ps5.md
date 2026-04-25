@@ -4,7 +4,7 @@ description: "Le studio derrière Returnal revient avec Saros, une exclusivité 
 date: "2026-04-25"
 topic: "gaming"
 tags: ["Saros", "PS5", "PlayStation", "Housemarque", "Test", "Action", "Rogue-lite"]
-image: "/images/gaming/saros-meilleure-exclusivite-ps5.jpg"
+image: "https://image.pollinations.ai/prompt/sci-fi%20action%20game%20character%20in%20alien%20landscape%20with%20glowing%20weapons%2C%20PlayStation%205%20exclusive%20game%20aesthetic%2C%20dark%20atmospheric?width=1200&height=630&seed=saros-meilleure-exclusivite-ps5&nologo=true"
 author: "Trend Pulse"
 readingTime: 8
 ---

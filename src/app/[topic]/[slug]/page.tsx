@@ -14,7 +14,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { topic: string; slug: string } }) {
   const a = getArticle(params.topic, params.slug);
   if (!a) return {};
-  return { title: a.title, description: a.description, openGraph: { title: a.title, description: a.description, type: 'article', publishedTime: a.date } };
+  return { title: a.title, description: a.description, openGraph: { title: a.title, description: a.description, type: 'article', publishedTime: a.date, images: a.image ? [a.image] : [] } };
 }
 
 async function md(s: string) { return (await remark().use(html).process(s)).toString(); }
@@ -26,16 +26,22 @@ export default async function ArticlePage({ params }: { params: { topic: string;
   const related = getRelatedArticles(article, 5);
   const html_ = await md(article.content);
   const dateStr = new Date(article.date).toLocaleDateString('fr-FR', { day:'numeric', month:'long', year:'numeric' });
-  const ld = { '@context':'https://schema.org','@type':'Article', headline:article.title, description:article.description, datePublished:article.date, author:{'@type':'Person',name:article.author}, publisher:{'@type':'Organization',name:'Trend Pulse'} };
+  const ld = { '@context':'https://schema.org','@type':'Article', headline:article.title, description:article.description, datePublished:article.date, image:article.image, author:{'@type':'Person',name:article.author}, publisher:{'@type':'Organization',name:'Trend Pulse'} };
 
   return (
     <>
       <Header />
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(ld)}} />
       <main className="flex-1">
-        {/* Hero */}
-        <div className="border-b border-[var(--border)]" style={{background:'var(--hero-gradient)'}}>
-          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
+        {/* Hero with image */}
+        <div className="relative border-b" style={{borderColor:'var(--border)'}}>
+          {article.image && (
+            <div className="absolute inset-0">
+              <img src={article.image} alt="" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/70 to-transparent" />
+            </div>
+          )}
+          <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
             <div className="flex items-center gap-2 mb-4 text-xs" style={{color:'var(--text-muted)'}}>
               <Link href="/" className="hover:opacity-70">Accueil</Link><span>/</span>
               <Link href={`/${params.topic}`} className="hover:opacity-70">{topic?.name}</Link><span>/</span>
@@ -72,13 +78,11 @@ export default async function ArticlePage({ params }: { params: { topic: string;
                 Espace publicitaire
               </div>
 
-              {/* Related articles */}
+              {/* Related */}
               {related.length > 0 && (
                 <div>
                   <h3 className="text-[11px] font-bold uppercase tracking-wider mb-3" style={{color:'var(--text-muted)'}}>À lire aussi</h3>
-                  <div className="space-y-0">
-                    {related.map(a => <ArticleCard key={a.slug} article={a} variant="compact" />)}
-                  </div>
+                  {related.map(a => <ArticleCard key={a.slug} article={a} variant="compact" />)}
                 </div>
               )}
 

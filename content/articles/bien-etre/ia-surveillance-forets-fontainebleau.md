@@ -4,7 +4,7 @@ description: "Après l'incendie en forêt de Fontainebleau, l'intelligence artif
 date: "2026-04-25"
 topic: "bien-etre"
 tags: ["Environnement", "IA", "Forêt", "Fontainebleau", "Santé", "Prévention", "Innovation"]
-image: "/images/bien-etre/ia-surveillance-forets-fontainebleau.jpg"
+image: "https://image.pollinations.ai/prompt/beautiful%20forest%20with%20AI%20surveillance%20drones%20and%20thermal%20imaging%20overlay%2C%20nature%20meets%20technology%2C%20Fontainebleau%20forest?width=1200&height=630&seed=ia-surveillance-forets-fontainebleau&nologo=true"
 author: "Trend Pulse"
 readingTime: 8
 ---

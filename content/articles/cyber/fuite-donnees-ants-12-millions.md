@@ -4,7 +4,7 @@ description: "Cartes d'identité, passeports, permis de conduire : les données 
 date: "2026-04-25"
 topic: "cyber"
 tags: ["ANTS", "Fuite de données", "Cybersécurité", "France", "Identité", "Protection", "Hack"]
-image: "/images/cyber/fuite-donnees-ants-12-millions.jpg"
+image: "https://image.pollinations.ai/prompt/hacker%20silhouette%20breaking%20through%20digital%20security%20wall%2C%20red%20alert%20warnings%2C%20data%20breach%20concept%2C%20cybersecurity?width=1200&height=630&seed=fuite-donnees-ants-12-millions&nologo=true"
 author: "Trend Pulse"
 readingTime: 9
 ---

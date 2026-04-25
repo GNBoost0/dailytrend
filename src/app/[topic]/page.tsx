@@ -8,18 +8,18 @@ import { getArticlesByTopic } from '@/lib/articles';
 
 export const dynamicParams = false;
 export async function generateStaticParams() {
-  return [{slug:'ia'},{slug:'crypto'},{slug:'cyber'},{slug:'bien-etre'},{slug:'gaming'}];
+  return [{topic:'ia'},{topic:'crypto'},{topic:'cyber'},{topic:'bien-etre'},{topic:'gaming'}];
 }
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const topic = getTopicBySlug(params.slug);
+export async function generateMetadata({ params }: { params: { topic: string } }) {
+  const topic = getTopicBySlug(params.topic);
   if (!topic) return {};
   return { title: `${topic.name} — Trend Pulse`, description: topic.description };
 }
 
-export default function TopicPage({ params }: { params: { slug: string } }) {
-  const topic = getTopicBySlug(params.slug);
+export default function TopicPage({ params }: { params: { topic: string } }) {
+  const topic = getTopicBySlug(params.topic);
   if (!topic) notFound();
-  const articles = getArticlesByTopic(params.slug);
+  const articles = getArticlesByTopic(params.topic);
 
   return (
     <>
