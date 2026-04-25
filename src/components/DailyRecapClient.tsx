@@ -167,7 +167,7 @@ function DateTooltip() {
       </button>
       {show && (
         <div
-          className="absolute left-0 top-8 z-50 w-56 rounded-xl p-3 text-xs leading-relaxed shadow-xl"
+          className="absolute right-0 top-8 z-50 w-56 rounded-xl p-3 text-xs leading-relaxed shadow-xl"
           style={{ background: 'var(--bg-primary)', border: '1px solid var(--accent)', color: 'var(--text-secondary)' }}
         >
           💡 Sélectionne une date pour voir le récap de cette journée. Par défaut, c&apos;est le récap du jour qui s&apos;affiche.
