@@ -122,10 +122,10 @@ export default function TopicCarousel({ articles }: { articles: Article[] }) {
         </button>
       )}
 
-      {/* Carousel scrollable */}
+      {/* Carousel scrollable — py-4 pour laisser de la place au scale hover */}
       <div
         ref={ref}
-        className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
+        className="flex gap-4 overflow-x-auto pb-2 pt-4 sm:py-4 snap-x snap-mandatory"
         style={{ scrollbarWidth: 'none', scrollBehavior: 'smooth' }}
       >
         {articles.map(a => (
