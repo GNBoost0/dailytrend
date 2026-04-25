@@ -118,7 +118,7 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
               </p>
               {/* Carte compacte style "À lire aussi" */}
               <Link href={`/${article.topic}/${article.slug}`} className="group block py-2 transition-all hover:translate-x-1 active:scale-[0.98] sm:active:scale-100 cursor-pointer" style={{ borderBottom: '1px solid var(--border)' }}>
-                <div className="flex gap-4">
+                <div className="flex gap-4 items-center">
                   <div className="w-24 h-16 shrink-0 rounded-lg overflow-hidden transition-transform group-hover:scale-105 group-active:scale-95" style={{ background: 'var(--bg-secondary)' }}>
                     <img src={article.image} alt="" className="w-full h-full object-cover" />
                   </div>
@@ -128,9 +128,10 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
                     </h4>
                     <div className="flex items-center gap-1.5 mt-1.5 text-[12px]" style={{ color: 'var(--text-muted)' }}>
                       <span>{getTopicName(article.topic)}</span>
-                      <span>·</span>
-                      <span>Lire →</span>
                     </div>
+                  </div>
+                  <div className="shrink-0 pr-1 sm:hidden">
+                    <span className="text-[11px] font-semibold animate-pulse" style={{ color: 'var(--accent)' }}>Lire →</span>
                   </div>
                 </div>
               </Link>
