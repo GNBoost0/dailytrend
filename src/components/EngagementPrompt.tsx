@@ -51,7 +51,18 @@ export default function EngagementPrompt() {
         return;
       }
 
+      // Enregistrer et attendre que le SW soit actif
       const reg = await navigator.serviceWorker.register('/sw.js');
+      if (!reg.active) {
+        await new Promise<void>((resolve) => {
+          const sw = reg.installing || reg.waiting;
+          if (sw) {
+            sw.addEventListener('statechange', () => { if (sw.state === 'activated') resolve(); });
+            setTimeout(resolve, 10000);
+          } else { resolve(); }
+        });
+      }
+
       const subscription = await reg.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),

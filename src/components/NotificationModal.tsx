@@ -13,6 +13,24 @@ function urlBase64ToUint8Array(base64: string) {
   return arr;
 }
 
+async function ensureServiceWorker(): Promise<ServiceWorkerRegistration> {
+  if (!('serviceWorker' in navigator)) throw new Error('SW non supporté');
+  const reg = await navigator.serviceWorker.register('/sw.js');
+  // Attendre que le SW soit actif
+  if (reg.active) return reg;
+  return new Promise((resolve, reject) => {
+    const sw = reg.installing || reg.waiting;
+    if (!sw) { resolve(reg); return; }
+    const onStateChange = () => {
+      if (sw.state === 'activated') { resolve(reg); }
+      else if (sw.state === 'redundant') { reject(new Error('SW redundant')); }
+    };
+    sw.addEventListener('statechange', onStateChange);
+    // Timeout 10s
+    setTimeout(() => { resolve(reg); }, 10000);
+  });
+}
+
 interface NotificationModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -21,23 +39,22 @@ interface NotificationModalProps {
 export default function NotificationModal({ isOpen, onClose }: NotificationModalProps) {
   const [status, setStatus] = useState<'checking' | 'enabled' | 'disabled' | 'unsupported'>('checking');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (!isOpen) return;
+    setError('');
     checkStatus();
   }, [isOpen]);
 
   const checkStatus = async () => {
+    setStatus('checking');
     try {
       if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
         setStatus('unsupported');
         return;
       }
-      const reg = await navigator.serviceWorker.getRegistration('/sw.js');
-      if (!reg) {
-        setStatus('disabled');
-        return;
-      }
+      const reg = await ensureServiceWorker();
       const sub = await reg.pushManager.getSubscription();
       setStatus(sub ? 'enabled' : 'disabled');
     } catch {
@@ -47,50 +64,55 @@ export default function NotificationModal({ isOpen, onClose }: NotificationModal
 
   const enableNotifications = async () => {
     setLoading(true);
+    setError('');
     try {
       const permission = await Notification.requestPermission();
       if (permission !== 'granted') {
+        setError('Permission refusée. Active-la dans les paramètres du navigateur.');
         setLoading(false);
         return;
       }
 
-      const reg = await navigator.serviceWorker.register('/sw.js');
+      const reg = await ensureServiceWorker();
       const subscription = await reg.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
       });
 
-      await fetch('/api/push-subscribe', {
+      const res = await fetch('/api/push-subscribe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'subscribe', subscription: subscription.toJSON() }),
       });
 
-      setStatus('enabled');
-    } catch {
-      // Silencieux
+      if (res.ok) {
+        setStatus('enabled');
+      } else {
+        setError('Erreur serveur. Réessaie.');
+      }
+    } catch (e: any) {
+      setError(e.message || 'Erreur inconnue');
     }
     setLoading(false);
   };
 
   const disableNotifications = async () => {
     setLoading(true);
+    setError('');
     try {
-      const reg = await navigator.serviceWorker.getRegistration('/sw.js');
-      if (reg) {
-        const sub = await reg.pushManager.getSubscription();
-        if (sub) {
-          await fetch('/api/push-subscribe', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'unsubscribe', endpoint: sub.endpoint }),
-          });
-          await sub.unsubscribe();
-        }
+      const reg = await ensureServiceWorker();
+      const sub = await reg.pushManager.getSubscription();
+      if (sub) {
+        await fetch('/api/push-subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'unsubscribe', endpoint: sub.endpoint }),
+        });
+        await sub.unsubscribe();
       }
       setStatus('disabled');
-    } catch {
-      // Silencieux
+    } catch (e: any) {
+      setError(e.message || 'Erreur');
     }
     setLoading(false);
   };
@@ -138,10 +160,17 @@ export default function NotificationModal({ isOpen, onClose }: NotificationModal
             </div>
           </div>
 
+          {/* Error */}
+          {error && (
+            <div className="mb-3 p-3 rounded-xl text-xs text-red-600 bg-red-50 dark:bg-red-900/20">
+              {error}
+            </div>
+          )}
+
           {/* Status */}
           {status === 'checking' && (
             <p className="text-sm text-center py-4" style={{ color: 'var(--text-muted)' }}>
-              Vérification...
+              ⏳ Vérification...
             </p>
           )}
 
