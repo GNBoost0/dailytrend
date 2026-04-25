@@ -14,6 +14,29 @@ function urlBase64ToUint8Array(base64: string) {
   return arr;
 }
 
+// Clé et constantes
+const STORAGE_KEY = 'dt-engagement';
+const ONE_WEEK_MS = 7 * 24 * 60 * 60 * 1000;
+
+interface EngagementData {
+  status: 'subscribed' | 'dismissed';
+  date: number; // timestamp
+}
+
+function getEngagement(): EngagementData | null {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return null;
+    return JSON.parse(raw);
+  } catch {
+    return null;
+  }
+}
+
+function setEngagement(status: 'subscribed' | 'dismissed') {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({ status, date: Date.now() }));
+}
+
 type PromptStep = 'idle' | 'notifications' | 'homescreen' | 'done';
 
 export default function EngagementPrompt() {
@@ -26,22 +49,58 @@ export default function EngagementPrompt() {
     return onPromptAvailable(() => setHasPrompt(true));
   }, []);
 
-  // Afficher le prompt notifications après 60s
+  // Logique d'affichage
   useEffect(() => {
-    const already = localStorage.getItem('dt-engagement');
-    if (already) return;
+    // 1) Vérifier si les notifs sont déjà activées
+    if ('serviceWorker' in navigator && 'PushManager' in window) {
+      navigator.serviceWorker.getRegistration('/sw.js').then(reg => {
+        if (reg) {
+          reg.pushManager.getSubscription().then(sub => {
+            if (sub) {
+              // Déjà abonné → ne jamais montrer
+              setEngagement('subscribed');
+              return;
+            }
+            // Pas abonné → vérifier si on peut montrer le prompt
+            checkAndSchedule();
+          });
+        } else {
+          checkAndSchedule();
+        }
+      });
+    } else {
+      checkAndSchedule();
+    }
 
-    const timer = setTimeout(() => {
-      setStep('notifications');
-    }, 60000);
+    function checkAndSchedule() {
+      const data = getEngagement();
 
-    return () => clearTimeout(timer);
+      if (!data) {
+        // Jamais vu → afficher dans 60s
+        const timer = setTimeout(() => setStep('notifications'), 60000);
+        return () => clearTimeout(timer);
+      }
+
+      if (data.status === 'subscribed') {
+        // Abonné → ne jamais montrer
+        return;
+      }
+
+      if (data.status === 'dismissed') {
+        // Refusé → attendre 1 semaine
+        const elapsed = Date.now() - data.date;
+        if (elapsed >= ONE_WEEK_MS) {
+          const timer = setTimeout(() => setStep('notifications'), 60000);
+          return () => clearTimeout(timer);
+        }
+      }
+    }
   }, []);
 
   const dismiss = useCallback(() => {
     setDismissed(true);
     setStep('idle');
-    localStorage.setItem('dt-engagement', 'dismissed');
+    setEngagement('dismissed');
   }, []);
 
   const enableNotifications = async () => {
@@ -51,7 +110,6 @@ export default function EngagementPrompt() {
         return;
       }
 
-      // Enregistrer et attendre que le SW soit actif
       const reg = await navigator.serviceWorker.register('/sw.js');
       if (!reg.active) {
         await new Promise<void>((resolve) => {
@@ -68,7 +126,6 @@ export default function EngagementPrompt() {
         applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
       });
 
-      // Envoyer à notre API (MongoDB)
       try {
         await fetch('/api/push-subscribe', {
           method: 'POST',
@@ -78,16 +135,20 @@ export default function EngagementPrompt() {
       } catch (e) {
         // Fallback silencieux
       }
-      localStorage.setItem('dt-engagement', 'notifications');
+
+      setEngagement('subscribed');
     } catch (e) {
       // L'utilisateur a refusé ou le navigateur ne supporte pas
+      dismiss();
+      return;
     }
 
     // Passer à l'étape homescreen si dispo
     if (hasPrompt) {
       setTimeout(() => setStep('homescreen'), 800);
     } else {
-      dismiss();
+      setDismissed(true);
+      setStep('idle');
     }
   };
 
@@ -97,7 +158,6 @@ export default function EngagementPrompt() {
       prompt.prompt();
       await prompt.userChoice;
     } else {
-      // Fallback instructions
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
       if (isIOS) {
         alert('📱 Ouvre le menu de partage (↗️) puis "Sur l\'écran d\'accueil"');
@@ -105,21 +165,19 @@ export default function EngagementPrompt() {
         alert('📱 Ouvre le menu du navigateur (⋮) puis "Installer l\'application"');
       }
     }
-    localStorage.setItem('dt-engagement', 'done');
-    dismiss();
+    setEngagement('subscribed');
+    setDismissed(true);
+    setStep('idle');
   };
 
   if (dismissed || step === 'idle' || step === 'done') return null;
 
   return (
     <>
-      {/* Backdrop subtil */}
       <div
         className="fixed inset-0 z-[100] bg-black/30 backdrop-blur-sm transition-opacity"
         onClick={dismiss}
       />
-
-      {/* Card */}
       <div
         className="fixed bottom-0 left-0 right-0 z-[101] p-4 flex justify-center animate-slide-up"
         style={{ animation: 'slideUp 0.4s ease-out' }}
@@ -128,7 +186,6 @@ export default function EngagementPrompt() {
           className="w-full max-w-md rounded-2xl p-6 shadow-2xl relative overflow-hidden"
           style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)' }}
         >
-          {/* Accent bar */}
           <div className="absolute top-0 left-0 right-0 h-1" style={{ background: 'var(--accent)' }} />
 
           {step === 'notifications' && (
@@ -142,7 +199,7 @@ export default function EngagementPrompt() {
                     Ne rate aucune actu
                   </h3>
                   <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                    1 notif par jour, c'est tout.
+                    1 notif par jour, c&apos;est tout.
                   </p>
                 </div>
               </div>
@@ -192,7 +249,7 @@ export default function EngagementPrompt() {
                   className="flex-1 py-2.5 rounded-xl text-sm font-bold text-white transition-opacity hover:opacity-90"
                   style={{ background: 'var(--accent)' }}
                 >
-                  📱 Ajouter à l&apos;écran d&apos;accueil
+                  📲 Installer l&apos;app
                 </button>
                 <button
                   onClick={dismiss}
