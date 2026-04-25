@@ -84,4 +84,7 @@
     transition: all 0.2s ease;
   }
   .tp-card:hover { border-color: rgba(79,70,229,0.2); box-shadow: 0 4px 20px rgba(79,70,229,0.06); }
+
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 }

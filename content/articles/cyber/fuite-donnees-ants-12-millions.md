@@ -4,12 +4,10 @@ description: "Cartes d'identité, passeports, permis de conduire : les données 
 date: "2026-04-25"
 topic: "cyber"
 tags: ["ANTS", "Fuite de données", "Cybersécurité", "France", "Identité", "Protection", "Hack"]
-image: "https://image.pollinations.ai/prompt/hacker%20silhouette%20breaking%20through%20digital%20security%20wall%2C%20red%20alert%20warnings%2C%20data%20breach%20concept%2C%20cybersecurity?width=1200&height=630&seed=fuite-donnees-ants-12-millions&nologo=true"
+image: "/images/articles/fuite-ants.jpg"
 author: "Trend Pulse"
 readingTime: 9
 ---
-
-# Fuite ANTS : 12 millions de Français victimes d'un désastre numérique
 
 **Carte d'identité. Passeport. Permis de conduire.** Trois documents qui définissent votre identité administrative en France. Et les données associées à ces trois documents de **12 millions de Français** viennent d'être exposées dans une fuite de données d'une gravité sans précédent.
 

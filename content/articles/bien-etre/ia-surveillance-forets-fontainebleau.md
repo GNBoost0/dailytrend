@@ -4,12 +4,10 @@ description: "Après l'incendie en forêt de Fontainebleau, l'intelligence artif
 date: "2026-04-25"
 topic: "bien-etre"
 tags: ["Environnement", "IA", "Forêt", "Fontainebleau", "Santé", "Prévention", "Innovation"]
-image: "https://image.pollinations.ai/prompt/beautiful%20forest%20with%20AI%20surveillance%20drones%20and%20thermal%20imaging%20overlay%2C%20nature%20meets%20technology%2C%20Fontainebleau%20forest?width=1200&height=630&seed=ia-surveillance-forets-fontainebleau&nologo=true"
+image: "/images/articles/fontainebleau.jpg"
 author: "Trend Pulse"
 readingTime: 8
 ---
-
-# Fontainebleau en feu : comment l'IA aide les pompiers à gagner la bataille des forêts
 
 **La forêt de Fontainebleau brûle.** L'un des massifs forestiers les plus emblématiques de France, à seulement 60 kilomètres au sud de Paris, est la proie des flammes. Les images sont saisissantes : des colonnes de fumée visibles à des dizaines de kilomètres, des pompiers mobilisés en masse, des dizaines d'hectares réduits en cendres.
 

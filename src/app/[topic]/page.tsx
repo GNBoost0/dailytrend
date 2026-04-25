@@ -42,14 +42,9 @@ export default function TopicPage({ params }: { params: { topic: string } }) {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {articles.length > 0 ? (
-            <>
-              <ArticleCard article={articles[0]} variant="hero" />
-              {articles.length > 1 && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
-                  {articles.slice(1).map(a => <ArticleCard key={a.slug} article={a} />)}
-                </div>
-              )}
-            </>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {articles.map(a => <ArticleCard key={a.slug} article={a} variant="card" />)}
+            </div>
           ) : (
             <p className="text-center py-20" style={{color:'var(--text-muted)'}}>Bientôt des articles ici…</p>
           )}
