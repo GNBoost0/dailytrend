@@ -5,19 +5,17 @@ import ArticleCard from '@/components/ArticleCard';
 import DailyRecap from '@/components/DailyRecap';
 import TopicCarousel from '@/components/TopicCarousel';
 import { getAllArticles } from '@/lib/articles';
-import { getAllRecaps } from '@/lib/recaps';
 import { topics } from '@/lib/topics';
 
 export default function Home() {
   const articles = getAllArticles();
-  const recaps = getAllRecaps();
 
   return (
     <>
       <Header />
       <main className="flex-1">
         {/* DailyRecap */}
-        {recaps.length > 0 && <DailyRecap recaps={recaps} />}
+        {recaps.length > 0 && <DailyRecap />}
 
         {topics.map(topic => {
           const topicArticles = articles.filter(a => a.topic === topic.slug);
