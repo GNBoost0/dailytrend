@@ -1,0 +1,18 @@
+{
+  "name": "DailyTrend — Actu Tech & Finance",
+  "short_name": "DailyTrend",
+  "description": "Le média tech et finance francophone. IA, Crypto, Cyber, Bien-être, Gaming, Finance.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f07000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo-header.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

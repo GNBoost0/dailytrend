@@ -32,17 +32,43 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Newsletter — centrée */}
+        {/* Actions rapides — centrées */}
         <div className="border-t border-[var(--border)] pt-6 mb-6 flex justify-center">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 max-w-lg">
-            <div className="flex-1">
-              <h4 className="text-sm font-bold mb-1" style={{color:'var(--text-primary)'}}>Newsletter</h4>
-              <p className="text-xs" style={{color:'var(--text-muted)'}}>Le récap quotidien dans votre boîte.</p>
+            <div className="flex-1 text-center sm:text-left">
+              <h4 className="text-sm font-bold mb-1" style={{color:'var(--text-primary)'}}>Restez connecté</h4>
+              <p className="text-xs" style={{color:'var(--text-muted)'}}>Active les notifications pour ne rien rater.</p>
             </div>
-            <form className="flex gap-1.5" onSubmit={e => e.preventDefault()}>
-              <input type="email" placeholder="email" className="px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-[var(--accent)]" style={{background:'var(--bg-primary)',color:'var(--text-primary)',border:'1px solid var(--border)'}} />
-              <button className="px-4 py-2 text-white text-sm font-semibold rounded-md hover:opacity-90" style={{background:'var(--accent)'}}>OK</button>
-            </form>
+            <div className="flex gap-2">
+              <button
+                onClick={() => {
+                  if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/sw.js').then(reg => {
+                      Notification.requestPermission().then(perm => {
+                        if (perm === 'granted') {
+                          localStorage.setItem('dt-engagement', 'notifications');
+                        }
+                      });
+                    });
+                  }
+                }}
+                className="px-4 py-2 text-white text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity flex items-center gap-1.5"
+                style={{background:'var(--accent)'}}
+              >
+                🔔 Notifications
+              </button>
+              <button
+                onClick={() => {
+                  if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/sw.js');
+                  }
+                }}
+                className="px-4 py-2 text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity flex items-center gap-1.5"
+                style={{background:'var(--bg-primary)', color:'var(--text-secondary)', border:'1px solid var(--border)'}}
+              >
+                📱 Écran d&apos;accueil
+              </button>
+            </div>
           </div>
         </div>
 

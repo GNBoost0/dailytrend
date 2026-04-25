@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { AdSenseScript } from '@/components/Adsense';
+import EngagementPrompt from '@/components/EngagementPrompt';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -31,10 +32,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/logo-header.png" />
         <link rel="alternate" type="application/rss+xml" title="DailyTrend RSS" href="/rss.xml" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#f07000" />
       </head>
       <body className="min-h-screen flex flex-col">
         <AdSenseScript />
         {children}
+        <EngagementPrompt />
       </body>
     </html>
   );
