@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ArticleCard from '@/components/ArticleCard';
-import DailyRecapCarousel from '@/components/DailyRecapCarousel';
+import DailyRecap from '@/components/DailyRecap';
 import TopicCarousel from '@/components/TopicCarousel';
 import { getAllArticles } from '@/lib/articles';
 import { getAllRecaps } from '@/lib/recaps';
@@ -16,8 +16,8 @@ export default function Home() {
     <>
       <Header />
       <main className="flex-1">
-        {/* Récap du jour — carrousel de cartes */}
-        {recaps.length > 0 && <DailyRecapCarousel recaps={recaps} />}
+        {/* DailyRecap */}
+        {recaps.length > 0 && <DailyRecap recaps={recaps} />}
 
         {topics.map(topic => {
           const topicArticles = articles.filter(a => a.topic === topic.slug);
@@ -34,7 +34,6 @@ export default function Home() {
                   </div>
                   <Link href={`/${topic.slug}`} className="text-[12px] font-medium hover:opacity-80 transition-colors" style={{color:'var(--accent)'}}>Tout voir →</Link>
                 </div>
-                
                 <TopicCarousel articles={topicArticles.slice(0, 7)} />
               </div>
             </section>
