@@ -94,7 +94,7 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
                 {' — '}{article.description}
               </p>
               {/* Carte compacte style "À lire aussi" */}
-              <Link href={`/${article.topic}/${article.slug}`} className="group block py-2" style={{ borderBottom: '1px solid var(--border)' }}>
+              <Link href={`/${article.topic}/${article.slug}`} className="group block py-2 transition-all hover:translate-x-1" style={{ borderBottom: '1px solid var(--border)' }}>
                 <div className="flex gap-4">
                   <div className="w-24 h-16 shrink-0 rounded-lg overflow-hidden" style={{ background: 'var(--bg-secondary)' }}>
                     <img src={article.image} alt="" className="w-full h-full object-cover" />
