@@ -22,6 +22,7 @@ export default function TopicCarousel({ articles }: { articles: Article[] }) {
   const [canRight, setCanRight] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [hintPlayed, setHintPlayed] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
 
   const check = () => {
     const el = ref.current;
@@ -37,11 +38,15 @@ export default function TopicCarousel({ articles }: { articles: Article[] }) {
     el.addEventListener('scroll', check, { passive: true });
     window.addEventListener('resize', check);
 
-    // Animation hint mobile
+    // Détecter tactile vs souris
+    const touchCheck = () => { setIsTouch(true); };
+    window.addEventListener('touchstart', touchCheck, { once: true });
+
+    // Animation hint mobile : petit scroll auto
     if (!hintPlayed && el.scrollWidth > el.clientWidth) {
       const timer = setTimeout(() => {
-        el.scrollBy({ left: 120, behavior: 'smooth' });
-        setTimeout(() => { if (el) el.scrollBy({ left: -120, behavior: 'smooth' }); }, 600);
+        el.scrollBy({ left: 100, behavior: 'smooth' });
+        setTimeout(() => { if (el) el.scrollBy({ left: -100, behavior: 'smooth' }); }, 500);
         setHintPlayed(true);
       }, 2500);
       return () => clearTimeout(timer);
@@ -63,37 +68,64 @@ export default function TopicCarousel({ articles }: { articles: Article[] }) {
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
+      {/* === DESKTOP : flèches au survol === */}
       {/* Flèche gauche */}
-      {canLeft && (
+      {canLeft && hovered && !isTouch && (
         <button
           onClick={() => scroll(-1)}
-          className={`absolute left-1 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110 hidden sm:flex ${hovered ? 'opacity-100' : 'opacity-0'}`}
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full shadow-xl items-center justify-center transition-all hover:scale-110 hidden sm:flex"
           style={{ background: 'var(--bg-primary)', border: '2px solid var(--accent)', color: 'var(--accent)' }}
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
         </button>
       )}
 
-      {/* Flèche droite — toujours visible comme indice */}
-      {canRight && (
+      {/* Flèche droite */}
+      {canRight && hovered && !isTouch && (
         <button
           onClick={() => scroll(1)}
-          className={`absolute right-1 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full shadow-xl flex items-center justify-center transition-all hover:scale-110 ${hovered ? 'sm:opacity-100' : ''}`}
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full shadow-xl items-center justify-center transition-all hover:scale-110 hidden sm:flex"
           style={{ background: 'var(--accent)', color: 'white' }}
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
         </button>
       )}
 
-      {/* Indicateur mobile — flèche orange qui rebondit */}
-      {canRight && !hintPlayed && (
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 z-10 sm:hidden pointer-events-none">
-          <div className="w-7 h-7 rounded-full flex items-center justify-center animate-bounce" style={{ background: 'var(--accent)', color: 'white', opacity: 0.7 }}>
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
+      {/* === MOBILE : indicateurs de scroll === */}
+      {/* Indicateur droit — cercle animé */}
+      {canRight && !hintPlayed && isTouch && (
+        <div className="absolute right-2 top-1/2 -translate-y-1/2 z-10 sm:hidden pointer-events-none">
+          <div
+            className="w-9 h-9 rounded-full flex items-center justify-center"
+            style={{
+              background: 'var(--accent)',
+              color: 'white',
+              animation: 'scrollHintRight 1.5s ease-in-out infinite',
+            }}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
           </div>
         </div>
       )}
 
+      {/* Indicateur gauche — cercle animé */}
+      {canLeft && isTouch && (
+        <div className="absolute left-2 top-1/2 -translate-y-1/2 z-10 sm:hidden pointer-events-none">
+          <div
+            className="w-9 h-9 rounded-full flex items-center justify-center"
+            style={{
+              background: 'var(--bg-primary)',
+              color: 'var(--accent)',
+              border: '2px solid var(--accent)',
+              animation: 'scrollHintLeft 1.5s ease-in-out infinite',
+            }}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" /></svg>
+          </div>
+        </div>
+      )}
+
+      {/* Carousel */}
       <div
         ref={ref}
         className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"

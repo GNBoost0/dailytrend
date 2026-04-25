@@ -107,6 +107,18 @@
   50% { filter: brightness(1.5); }
 }
 
+@keyframes scrollHintRight {
+  0% { transform: translateX(0); opacity: 0.9; }
+  50% { transform: translateX(-10px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 0.9; }
+}
+
+@keyframes scrollHintLeft {
+  0% { transform: translateX(0); opacity: 0.9; }
+  50% { transform: translateX(10px); opacity: 1; }
+  100% { transform: translateX(0); opacity: 0.9; }
+}
+
 .carousel-scroll {
   animation: carouselHint 3s ease-in-out 2s 1;
 }
