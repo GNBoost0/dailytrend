@@ -20,9 +20,7 @@ export default function TopicCarousel({ articles }: { articles: Article[] }) {
   const ref = useRef<HTMLDivElement>(null);
   const [canLeft, setCanLeft] = useState(false);
   const [canRight, setCanRight] = useState(false);
-  const [hovered, setHovered] = useState(false);
-  const [hintPlayed, setHintPlayed] = useState(false);
-  const [isTouch, setIsTouch] = useState(false);
+  const [desktopHover, setDesktopHover] = useState(false);
 
   const check = () => {
     const el = ref.current;
@@ -37,26 +35,11 @@ export default function TopicCarousel({ articles }: { articles: Article[] }) {
     if (!el) return;
     el.addEventListener('scroll', check, { passive: true });
     window.addEventListener('resize', check);
-
-    // Détecter tactile vs souris
-    const touchCheck = () => { setIsTouch(true); };
-    window.addEventListener('touchstart', touchCheck, { once: true });
-
-    // Animation hint mobile : petit scroll auto
-    if (!hintPlayed && el.scrollWidth > el.clientWidth) {
-      const timer = setTimeout(() => {
-        el.scrollBy({ left: 100, behavior: 'smooth' });
-        setTimeout(() => { if (el) el.scrollBy({ left: -100, behavior: 'smooth' }); }, 500);
-        setHintPlayed(true);
-      }, 2500);
-      return () => clearTimeout(timer);
-    }
-
     return () => {
       el.removeEventListener('scroll', check);
       window.removeEventListener('resize', check);
     };
-  }, [hintPlayed]);
+  }, []);
 
   const scroll = (dir: number) => {
     ref.current?.scrollBy({ left: dir * 320, behavior: 'smooth' });
@@ -64,68 +47,82 @@ export default function TopicCarousel({ articles }: { articles: Article[] }) {
 
   return (
     <div
-      className="relative"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      className="relative group"
+      onMouseEnter={() => setDesktopHover(true)}
+      onMouseLeave={() => setDesktopHover(false)}
     >
-      {/* === DESKTOP : flèches au survol === */}
-      {/* Flèche gauche */}
-      {canLeft && hovered && !isTouch && (
+      {/* ===== MOBILE : pastilles permanentes ===== */}
+      {/* Pastille droite — visible tant qu'on peut scroller à droite */}
+      {canRight && (
+        <div className="absolute right-1 top-1/2 -translate-y-1/2 z-10 pointer-events-none sm:hidden">
+          <div
+            className="flex items-center justify-center rounded-full"
+            style={{
+              width: '36px',
+              height: '36px',
+              background: 'linear-gradient(135deg, var(--accent), #d95000)',
+              color: 'white',
+              boxShadow: '0 2px 12px rgba(240,112,0,0.4)',
+              animation: 'scrollHintRight 1.8s ease-in-out infinite',
+            }}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
+          </div>
+        </div>
+      )}
+
+      {/* Pastille gauche — visible dès qu'on peut scroller à gauche */}
+      {canLeft && (
+        <div className="absolute left-1 top-1/2 -translate-y-1/2 z-10 pointer-events-none sm:hidden">
+          <div
+            className="flex items-center justify-center rounded-full"
+            style={{
+              width: '36px',
+              height: '36px',
+              background: 'rgba(255,255,255,0.85)',
+              color: 'var(--accent)',
+              border: '2px solid var(--accent)',
+              boxShadow: '0 2px 12px rgba(0,0,0,0.1)',
+              animation: 'scrollHintLeft 1.8s ease-in-out infinite',
+            }}
+          >
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
+          </div>
+        </div>
+      )}
+
+      {/* ===== DESKTOP : flèches au survol ===== */}
+      {canLeft && desktopHover && (
         <button
           onClick={() => scroll(-1)}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full shadow-xl items-center justify-center transition-all hover:scale-110 hidden sm:flex"
-          style={{ background: 'var(--bg-primary)', border: '2px solid var(--accent)', color: 'var(--accent)' }}
+          className="hidden sm:flex absolute left-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full items-center justify-center transition-all hover:scale-110"
+          style={{
+            background: 'var(--bg-primary)',
+            color: 'var(--accent)',
+            border: '2px solid var(--accent)',
+            boxShadow: '0 2px 12px rgba(0,0,0,0.15)',
+          }}
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" /></svg>
         </button>
       )}
 
-      {/* Flèche droite */}
-      {canRight && hovered && !isTouch && (
+      {canRight && desktopHover && (
         <button
           onClick={() => scroll(1)}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full shadow-xl items-center justify-center transition-all hover:scale-110 hidden sm:flex"
-          style={{ background: 'var(--accent)', color: 'white' }}
+          className="hidden sm:flex absolute right-2 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full items-center justify-center transition-all hover:scale-110"
+          style={{
+            background: 'linear-gradient(135deg, var(--accent), #d95000)',
+            color: 'white',
+            border: 'none',
+            boxShadow: '0 2px 12px rgba(240,112,0,0.4)',
+          }}
         >
           <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" /></svg>
         </button>
       )}
 
-      {/* === MOBILE : indicateurs de scroll === */}
-      {/* Indicateur droit — cercle animé */}
-      {canRight && !hintPlayed && isTouch && (
-        <div className="absolute right-2 top-1/2 -translate-y-1/2 z-10 sm:hidden pointer-events-none">
-          <div
-            className="w-9 h-9 rounded-full flex items-center justify-center"
-            style={{
-              background: 'var(--accent)',
-              color: 'white',
-              animation: 'scrollHintRight 1.5s ease-in-out infinite',
-            }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M9 5l7 7-7 7" /></svg>
-          </div>
-        </div>
-      )}
-
-      {/* Indicateur gauche — cercle animé */}
-      {canLeft && isTouch && (
-        <div className="absolute left-2 top-1/2 -translate-y-1/2 z-10 sm:hidden pointer-events-none">
-          <div
-            className="w-9 h-9 rounded-full flex items-center justify-center"
-            style={{
-              background: 'var(--bg-primary)',
-              color: 'var(--accent)',
-              border: '2px solid var(--accent)',
-              animation: 'scrollHintLeft 1.5s ease-in-out infinite',
-            }}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M15 19l-7-7 7-7" /></svg>
-          </div>
-        </div>
-      )}
-
-      {/* Carousel */}
+      {/* Carousel scrollable */}
       <div
         ref={ref}
         className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
