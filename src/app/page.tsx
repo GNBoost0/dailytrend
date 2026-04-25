@@ -15,7 +15,7 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* DailyRecap */}
-        {recaps.length > 0 && <DailyRecap />}
+        <DailyRecap />
 
         {topics.map(topic => {
           const topicArticles = articles.filter(a => a.topic === topic.slug);
