@@ -60,7 +60,7 @@ export default async function ArticlePage({ params }: { params: { topic: string;
             {/* Description with shadow */}
             <p className="text-base sm:text-lg leading-relaxed text-gray-200" style={{textShadow:'0 1px 4px rgba(0,0,0,0.7)'}}>{article.description}</p>
             {/* Meta — blanc pur, bien visible */}
-            <div className="flex flex-wrap items-center gap-4 mt-6 text-sm font-semibold text-white">
+            <div className="flex flex-wrap items-center gap-4 mt-6 text-sm font-semibold text-white" style={{WebkitTextStroke:'0.5px rgba(0,0,0,0.6)', textShadow:'0 0 3px rgba(0,0,0,0.9), 0 0 6px rgba(0,0,0,0.5)'}}>
               <span className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-[10px] font-bold text-white">DT</div>
                 {article.author}
