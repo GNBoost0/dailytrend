@@ -7,6 +7,7 @@ import { getArticle, getRelatedArticles, getAllArticles } from '@/lib/articles';
 import { getTopicBySlug, topics } from '@/lib/topics';
 import { remark } from 'remark';
 import html from 'remark-html';
+import gfm from 'remark-gfm';
 
 export async function generateStaticParams() {
   return getAllArticles().map(a => ({ topic: a.topic, slug: a.slug }));
@@ -17,7 +18,7 @@ export async function generateMetadata({ params }: { params: { topic: string; sl
   return { title: a.title, description: a.description, openGraph: { title: a.title, description: a.description, type: 'article', publishedTime: a.date, images: a.image ? [a.image] : [] } };
 }
 
-async function md(s: string) { return (await remark().use(html).process(s)).toString(); }
+async function md(s: string) { return (await remark().use(gfm).use(html).process(s)).toString(); }
 
 export default async function ArticlePage({ params }: { params: { topic: string; slug: string } }) {
   const article = getArticle(params.topic, params.slug);
@@ -33,30 +34,35 @@ export default async function ArticlePage({ params }: { params: { topic: string;
       <Header />
       <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(ld)}} />
       <main className="flex-1">
-        {/* Hero with image */}
+        {/* Hero with image + strong overlay for text readability */}
         <div className="relative border-b" style={{borderColor:'var(--border)'}}>
           {article.image && (
             <div className="absolute inset-0">
               <img src={article.image} alt="" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/70 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-primary)] via-[var(--bg-primary)]/85 to-[var(--bg-primary)]/50" />
             </div>
           )}
           <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10">
-            <div className="flex items-center gap-2 mb-4 text-xs" style={{color:'var(--text-muted)'}}>
-              <Link href="/" className="hover:opacity-70">Accueil</Link><span>/</span>
-              <Link href={`/${params.topic}`} className="hover:opacity-70">{topic?.name}</Link><span>/</span>
-              <span className="truncate" style={{color:'var(--text-secondary)'}}>{article.title}</span>
+            {/* Breadcrumb with text shadow */}
+            <div className="flex items-center gap-2 mb-4 text-xs" style={{color:'#ccc', textShadow:'0 1px 4px rgba(0,0,0,0.8)'}}>
+              <Link href="/" className="hover:text-white transition-colors">Accueil</Link><span>/</span>
+              <Link href={`/${params.topic}`} className="hover:text-white transition-colors">{topic?.name}</Link><span>/</span>
+              <span className="truncate text-gray-300">{article.title}</span>
             </div>
+            {/* Tags */}
             <div className="flex flex-wrap gap-1.5 mb-4">
               {article.tags.map(t => (
-                <span key={t} className="px-2.5 py-1 rounded-md text-[11px] font-medium" style={{background:'var(--tag-bg)',color:'var(--tag-text)'}}>{t}</span>
+                <span key={t} className="px-2.5 py-1 rounded-md text-[11px] font-medium backdrop-blur-sm" style={{background:'rgba(0,0,0,0.4)',color:'#ddd',textShadow:'0 1px 2px rgba(0,0,0,0.5)'}}>{t}</span>
               ))}
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-[1.2] mb-4" style={{color:'var(--text-primary)'}}>{article.title}</h1>
-            <p className="text-base sm:text-lg leading-relaxed" style={{color:'var(--text-secondary)'}}>{article.description}</p>
-            <div className="flex flex-wrap items-center gap-4 mt-6 text-xs" style={{color:'var(--text-muted)'}}>
+            {/* Title with strong shadow */}
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-[1.2] mb-4 text-white" style={{textShadow:'0 2px 10px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.6)'}}>{article.title}</h1>
+            {/* Description with shadow */}
+            <p className="text-base sm:text-lg leading-relaxed text-gray-200" style={{textShadow:'0 1px 4px rgba(0,0,0,0.7)'}}>{article.description}</p>
+            {/* Meta */}
+            <div className="flex flex-wrap items-center gap-4 mt-6 text-xs text-gray-300" style={{textShadow:'0 1px 3px rgba(0,0,0,0.7)'}}>
               <span className="flex items-center gap-1.5">
-                <div className="w-6 h-6 rounded-full bg-indigo-500/20 flex items-center justify-center text-[9px] font-bold text-indigo-500">TP</div>
+                <div className="w-6 h-6 rounded-full bg-indigo-500/30 flex items-center justify-center text-[9px] font-bold text-white backdrop-blur-sm">TP</div>
                 {article.author}
               </span>
               <time>{dateStr}</time>
@@ -73,12 +79,7 @@ export default async function ArticlePage({ params }: { params: { topic: string;
             </article>
 
             <aside className="lg:w-[280px] shrink-0 space-y-8">
-              {/* Ad */}
-              <div className="aspect-[4/3] rounded-xl flex items-center justify-center text-xs" style={{background:'var(--bg-secondary)',border:'1px solid var(--border)',color:'var(--text-muted)'}}>
-                Espace publicitaire
-              </div>
-
-              {/* Related */}
+              {/* Related articles */}
               {related.length > 0 && (
                 <div>
                   <h3 className="text-[11px] font-bold uppercase tracking-wider mb-3" style={{color:'var(--text-muted)'}}>À lire aussi</h3>
