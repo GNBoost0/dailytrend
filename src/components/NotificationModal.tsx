@@ -1,0 +1,195 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+
+const VAPID_PUBLIC_KEY = 'BJz_Xeqn5j15mWV3zJsOyF6WY76MAPvuUF56JRD7goZvVQ7GYqIhPgn1pYsw7vrhDF10UJ7qU807tG5OYDRNP3I';
+
+function urlBase64ToUint8Array(base64: string) {
+  const padding = '='.repeat((4 - base64.length % 4) % 4);
+  const b64 = (base64 + padding).replace(/-/g, '+').replace(/_/g, '/');
+  const raw = globalThis.atob(b64);
+  const arr = new Uint8Array(raw.length);
+  for (let i = 0; i < raw.length; i++) arr[i] = raw.charCodeAt(i);
+  return arr;
+}
+
+interface NotificationModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function NotificationModal({ isOpen, onClose }: NotificationModalProps) {
+  const [status, setStatus] = useState<'checking' | 'enabled' | 'disabled' | 'unsupported'>('checking');
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    checkStatus();
+  }, [isOpen]);
+
+  const checkStatus = async () => {
+    try {
+      if (!('serviceWorker' in navigator) || !('PushManager' in window)) {
+        setStatus('unsupported');
+        return;
+      }
+      const reg = await navigator.serviceWorker.getRegistration('/sw.js');
+      if (!reg) {
+        setStatus('disabled');
+        return;
+      }
+      const sub = await reg.pushManager.getSubscription();
+      setStatus(sub ? 'enabled' : 'disabled');
+    } catch {
+      setStatus('disabled');
+    }
+  };
+
+  const enableNotifications = async () => {
+    setLoading(true);
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission !== 'granted') {
+        setLoading(false);
+        return;
+      }
+
+      const reg = await navigator.serviceWorker.register('/sw.js');
+      const subscription = await reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: urlBase64ToUint8Array(VAPID_PUBLIC_KEY),
+      });
+
+      await fetch('/api/push-subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'subscribe', subscription: subscription.toJSON() }),
+      });
+
+      setStatus('enabled');
+    } catch {
+      // Silencieux
+    }
+    setLoading(false);
+  };
+
+  const disableNotifications = async () => {
+    setLoading(true);
+    try {
+      const reg = await navigator.serviceWorker.getRegistration('/sw.js');
+      if (reg) {
+        const sub = await reg.pushManager.getSubscription();
+        if (sub) {
+          await fetch('/api/push-subscribe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'unsubscribe', endpoint: sub.endpoint }),
+          });
+          await sub.unsubscribe();
+        }
+      }
+      setStatus('disabled');
+    } catch {
+      // Silencieux
+    }
+    setLoading(false);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <div className="fixed inset-0 z-[201] flex items-center justify-center p-4">
+        <div
+          className="w-full max-w-sm rounded-2xl p-6 shadow-2xl relative"
+          style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)' }}
+        >
+          {/* Close */}
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-lg"
+            style={{ color: 'var(--text-muted)', background: 'var(--bg-secondary)' }}
+          >
+            ✕
+          </button>
+
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-5">
+            <div
+              className="w-11 h-11 rounded-xl flex items-center justify-center text-xl"
+              style={{ background: 'var(--accent)', color: 'white' }}
+            >
+              🔔
+            </div>
+            <div>
+              <h3 className="font-extrabold text-base" style={{ color: 'var(--text-primary)' }}>
+                Notifications
+              </h3>
+              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
+                1 notif par jour, jamais de spam
+              </p>
+            </div>
+          </div>
+
+          {/* Status */}
+          {status === 'checking' && (
+            <p className="text-sm text-center py-4" style={{ color: 'var(--text-muted)' }}>
+              Vérification...
+            </p>
+          )}
+
+          {status === 'unsupported' && (
+            <p className="text-sm text-center py-4" style={{ color: 'var(--text-muted)' }}>
+              Les notifications ne sont pas supportées par ce navigateur.
+            </p>
+          )}
+
+          {(status === 'enabled' || status === 'disabled') && (
+            <div className="space-y-3">
+              {/* État actuel */}
+              <div
+                className="flex items-center gap-3 p-3 rounded-xl text-sm"
+                style={{
+                  background: status === 'enabled' ? 'rgba(34,197,94,0.1)' : 'var(--bg-secondary)',
+                  color: status === 'enabled' ? '#22c55e' : 'var(--text-muted)',
+                }}
+              >
+                <span className="text-lg">{status === 'enabled' ? '✅' : '⚪'}</span>
+                <span className="font-medium">
+                  {status === 'enabled' ? 'Notifications activées' : 'Notifications désactivées'}
+                </span>
+              </div>
+
+              {/* Boutons */}
+              <button
+                onClick={status === 'disabled' ? enableNotifications : disableNotifications}
+                disabled={loading}
+                className="w-full py-3 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 disabled:opacity-50"
+                style={{
+                  background: status === 'disabled' ? 'var(--accent)' : 'var(--bg-secondary)',
+                  color: status === 'disabled' ? 'white' : 'var(--text-primary)',
+                  border: status === 'disabled' ? 'none' : '1px solid var(--border)',
+                }}
+              >
+                {loading ? '⏳ Chargement...' : status === 'disabled' ? '🔔 Activer les notifications' : '🔕 Désactiver les notifications'}
+              </button>
+
+              <p className="text-xs text-center" style={{ color: 'var(--text-muted)' }}>
+                {status === 'disabled'
+                  ? 'Reçois chaque jour un récap de tes articles préférés.'
+                  : 'Tu peux les réactiver à tout moment.'}
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+}
