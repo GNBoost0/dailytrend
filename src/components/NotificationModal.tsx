@@ -14,20 +14,13 @@ function urlBase64ToUint8Array(base64: string) {
 }
 
 async function ensureServiceWorker(): Promise<ServiceWorkerRegistration> {
-  if (!('serviceWorker' in navigator)) throw new Error('SW non supporté');
   const reg = await navigator.serviceWorker.register('/sw.js');
-  // Attendre que le SW soit actif
   if (reg.active) return reg;
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const sw = reg.installing || reg.waiting;
     if (!sw) { resolve(reg); return; }
-    const onStateChange = () => {
-      if (sw.state === 'activated') { resolve(reg); }
-      else if (sw.state === 'redundant') { reject(new Error('SW redundant')); }
-    };
-    sw.addEventListener('statechange', onStateChange);
-    // Timeout 10s
-    setTimeout(() => { resolve(reg); }, 10000);
+    sw.addEventListener('statechange', () => { if (sw.state === 'activated') resolve(reg); });
+    setTimeout(() => resolve(reg), 10000);
   });
 }
 
@@ -68,7 +61,7 @@ export default function NotificationModal({ isOpen, onClose }: NotificationModal
     try {
       const permission = await Notification.requestPermission();
       if (permission !== 'granted') {
-        setError('Permission refusée. Active-la dans les paramètres du navigateur.');
+        setError('Permission refusée.');
         setLoading(false);
         return;
       }
@@ -87,11 +80,12 @@ export default function NotificationModal({ isOpen, onClose }: NotificationModal
 
       if (res.ok) {
         setStatus('enabled');
+        localStorage.setItem('dt-engagement', JSON.stringify({ status: 'subscribed', date: Date.now() }));
       } else {
-        setError('Erreur serveur. Réessaie.');
+        setError('Erreur serveur.');
       }
     } catch (e: any) {
-      setError(e.message || 'Erreur inconnue');
+      setError(e.message || 'Erreur');
     }
     setLoading(false);
   };
@@ -111,8 +105,9 @@ export default function NotificationModal({ isOpen, onClose }: NotificationModal
         await sub.unsubscribe();
       }
       setStatus('disabled');
+      localStorage.setItem('dt-engagement', JSON.stringify({ status: 'dismissed', date: Date.now() }));
     } catch (e: any) {
-      setError(e.message || 'Erreur');
+      setError(e.message);
     }
     setLoading(false);
   };
@@ -121,100 +116,29 @@ export default function NotificationModal({ isOpen, onClose }: NotificationModal
 
   return (
     <>
-      {/* Backdrop */}
-      <div
-        className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm"
-        onClick={onClose}
-      />
-
-      {/* Modal */}
+      <div className="fixed inset-0 z-[200] bg-black/40 backdrop-blur-sm" onClick={onClose} />
       <div className="fixed inset-0 z-[201] flex items-center justify-center p-4">
-        <div
-          className="w-full max-w-sm rounded-2xl p-6 shadow-2xl relative"
-          style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)' }}
-        >
-          {/* Close */}
-          <button
-            onClick={onClose}
-            className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-lg"
-            style={{ color: 'var(--text-muted)', background: 'var(--bg-secondary)' }}
-          >
-            ✕
-          </button>
-
-          {/* Header */}
+        <div className="w-full max-w-sm rounded-2xl p-6 shadow-2xl relative" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border)' }}>
+          <button onClick={onClose} className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center" style={{ color: 'var(--text-muted)', background: 'var(--bg-secondary)' }}>✕</button>
           <div className="flex items-center gap-3 mb-5">
-            <div
-              className="w-11 h-11 rounded-xl flex items-center justify-center text-xl"
-              style={{ background: 'var(--accent)', color: 'white' }}
-            >
-              🔔
-            </div>
+            <div className="w-11 h-11 rounded-xl flex items-center justify-center text-xl" style={{ background: 'var(--accent)', color: 'white' }}>🔔</div>
             <div>
-              <h3 className="font-extrabold text-base" style={{ color: 'var(--text-primary)' }}>
-                Notifications
-              </h3>
-              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>
-                1 notif par jour, jamais de spam
-              </p>
+              <h3 className="font-extrabold text-base" style={{ color: 'var(--text-primary)' }}>Notifications</h3>
+              <p className="text-xs" style={{ color: 'var(--text-muted)' }}>1 notif par jour, jamais de spam</p>
             </div>
           </div>
-
-          {/* Error */}
-          {error && (
-            <div className="mb-3 p-3 rounded-xl text-xs text-red-600 bg-red-50 dark:bg-red-900/20">
-              {error}
-            </div>
-          )}
-
-          {/* Status */}
-          {status === 'checking' && (
-            <p className="text-sm text-center py-4" style={{ color: 'var(--text-muted)' }}>
-              ⏳ Vérification...
-            </p>
-          )}
-
-          {status === 'unsupported' && (
-            <p className="text-sm text-center py-4" style={{ color: 'var(--text-muted)' }}>
-              Les notifications ne sont pas supportées par ce navigateur.
-            </p>
-          )}
-
+          {error && <div className="mb-3 p-3 rounded-xl text-xs text-red-600 bg-red-50">{error}</div>}
+          {status === 'checking' && <p className="text-sm text-center py-4" style={{ color: 'var(--text-muted)' }}>⏳ Vérification...</p>}
+          {status === 'unsupported' && <p className="text-sm text-center py-4" style={{ color: 'var(--text-muted)' }}>Notifications non supportées.</p>}
           {(status === 'enabled' || status === 'disabled') && (
             <div className="space-y-3">
-              {/* État actuel */}
-              <div
-                className="flex items-center gap-3 p-3 rounded-xl text-sm"
-                style={{
-                  background: status === 'enabled' ? 'rgba(34,197,94,0.1)' : 'var(--bg-secondary)',
-                  color: status === 'enabled' ? '#22c55e' : 'var(--text-muted)',
-                }}
-              >
+              <div className="flex items-center gap-3 p-3 rounded-xl text-sm" style={{ background: status === 'enabled' ? 'rgba(34,197,94,0.1)' : 'var(--bg-secondary)', color: status === 'enabled' ? '#22c55e' : 'var(--text-muted)' }}>
                 <span className="text-lg">{status === 'enabled' ? '✅' : '⚪'}</span>
-                <span className="font-medium">
-                  {status === 'enabled' ? 'Notifications activées' : 'Notifications désactivées'}
-                </span>
+                <span className="font-medium">{status === 'enabled' ? 'Notifications activées' : 'Notifications désactivées'}</span>
               </div>
-
-              {/* Boutons */}
-              <button
-                onClick={status === 'disabled' ? enableNotifications : disableNotifications}
-                disabled={loading}
-                className="w-full py-3 rounded-xl text-sm font-bold transition-opacity hover:opacity-90 disabled:opacity-50"
-                style={{
-                  background: status === 'disabled' ? 'var(--accent)' : 'var(--bg-secondary)',
-                  color: status === 'disabled' ? 'white' : 'var(--text-primary)',
-                  border: status === 'disabled' ? 'none' : '1px solid var(--border)',
-                }}
-              >
-                {loading ? '⏳ Chargement...' : status === 'disabled' ? '🔔 Activer les notifications' : '🔕 Désactiver les notifications'}
+              <button onClick={status === 'disabled' ? enableNotifications : disableNotifications} disabled={loading} className="w-full py-3 rounded-xl text-sm font-bold disabled:opacity-50" style={{ background: status === 'disabled' ? 'var(--accent)' : 'var(--bg-secondary)', color: status === 'disabled' ? 'white' : 'var(--text-primary)', border: status === 'disabled' ? 'none' : '1px solid var(--border)' }}>
+                {loading ? '⏳ Chargement...' : status === 'disabled' ? '🔔 Activer' : '🔕 Désactiver'}
               </button>
-
-              <p className="text-xs text-center" style={{ color: 'var(--text-muted)' }}>
-                {status === 'disabled'
-                  ? 'Reçois chaque jour un récap de tes articles préférés.'
-                  : 'Tu peux les réactiver à tout moment.'}
-              </p>
             </div>
           )}
         </div>

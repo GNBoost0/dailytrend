@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
+import ArticleCard from '@/components/ArticleCard';
+import { getAllArticles } from '@/lib/articles';
 import { topics } from '@/lib/topics';
 
 interface RecapArticle {
@@ -11,6 +12,9 @@ interface RecapArticle {
   topic: string;
   image: string;
   tags: string[];
+  date?: string;
+  readingTime?: number;
+  author?: string;
 }
 
 interface RecapEntry {
@@ -20,12 +24,6 @@ interface RecapEntry {
   articles: RecapArticle[];
 }
 
-function getTopicIcon(slug: string) {
-  return topics.find(t => t.slug === slug)?.icon || '📰';
-}
-function getTopicName(slug: string) {
-  return topics.find(t => t.slug === slug)?.name || slug;
-}
 function formatDate(d: string) {
   try { return new Date(d).toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); }
   catch { return d; }
@@ -39,11 +37,12 @@ export default function DailyRecap({ recaps }: { recaps: RecapEntry[] }) {
   const recap = recaps[activeIdx];
   if (!recap) return null;
 
-  // Découper le body en intro et conclusion
-  // Le body peut contenir un marqueur [articles] pour séparer
   const bodyParts = recap.body.split('[articles]');
   const intro = bodyParts[0].trim();
   const outro = bodyParts.length > 1 ? bodyParts[1].trim() : '';
+
+  // Convertir les articles du récap en objets Article pour ArticleCard
+  const allArticles = getAllArticles();
 
   return (
     <section className="border-b" style={{ borderColor: 'var(--border)' }}>
@@ -77,8 +76,8 @@ export default function DailyRecap({ recaps }: { recaps: RecapEntry[] }) {
           📅 {formatDate(recap.date)}
         </p>
 
-        {/* Flux de lecture intégré */}
-        <div className="space-y-5">
+        {/* Flux de lecture continu */}
+        <div className="space-y-4">
           {/* Intro du rédac */}
           {intro && (
             <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: 'var(--text-secondary)' }}>
@@ -86,34 +85,37 @@ export default function DailyRecap({ recaps }: { recaps: RecapEntry[] }) {
             </p>
           )}
 
-          {/* Articles intégrés dans le flux */}
-          {recap.articles.map((article) => (
-            <div key={article.slug} className="space-y-2.5">
-              {/* Résumé intégré au texte */}
-              <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
-                <span className="font-bold" style={{ color: 'var(--text-primary)' }}>{getTopicIcon(article.topic)} {article.title}</span>
-                {' — '}{article.description}
-              </p>
-              {/* Carte image */}
-              <Link href={`/${article.topic}/${article.slug}`}>
-                <div className="rounded-xl overflow-hidden transition-all hover:shadow-lg" style={{ border: '1px solid var(--border)' }}>
-                  <img
-                    src={`/images/articles/${article.image}`}
-                    alt={article.title}
-                    className="w-full h-44 object-cover"
-                  />
-                  <div className="px-3 py-2.5 flex items-center justify-between" style={{ background: 'var(--bg-secondary)' }}>
-                    <span className="text-xs font-semibold" style={{ color: 'var(--accent)' }}>Lire l'article →</span>
-                    <span className="text-[10px]" style={{ color: 'var(--text-muted)' }}>
-                      {getTopicName(article.topic)}
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </div>
-          ))}
+          {/* Articles intégrés : résumé texte + carte compact */}
+          {recap.articles.map((article) => {
+            // Trouver l'article complet pour ArticleCard
+            const fullArticle = allArticles.find(a => a.slug === article.slug);
+            const articleForCard = fullArticle || {
+              slug: article.slug,
+              title: article.title,
+              description: article.description,
+              date: recap.date,
+              topic: article.topic,
+              tags: article.tags,
+              image: article.image,
+              author: 'DailyTrend',
+              readingTime: 5,
+              content: '',
+            };
 
-          {/* Outro du rédac */}
+            return (
+              <div key={article.slug} className="space-y-2">
+                {/* Résumé texte */}
+                <p className="text-sm leading-relaxed" style={{ color: 'var(--text-secondary)' }}>
+                  <span className="font-bold" style={{ color: 'var(--text-primary)' }}>{article.title}</span>
+                  {' — '}{article.description}
+                </p>
+                {/* Carte identique à "À lire aussi" */}
+                <ArticleCard article={articleForCard} variant="compact" />
+              </div>
+            );
+          })}
+
+          {/* Outro */}
           {outro && (
             <p className="text-sm leading-relaxed whitespace-pre-line" style={{ color: 'var(--text-secondary)' }}>
               {outro}
