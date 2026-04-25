@@ -31,7 +31,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="fr">
       <head>
         <link rel="icon" href="/logo-header.png" />
-        <link rel="apple-touch-icon" href="/logo-header.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#f07000" />
         <meta name="mobile-web-app-capable" content="yes" />
@@ -39,6 +40,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="DailyTrend" />
         <meta name="application-name" content="DailyTrend" />
+        <meta name="msapplication-TileColor" content="#f07000" />
+        <meta name="msapplication-TileImage" content="/icon-512x512.png" />
       </head>
       <body className="min-h-screen flex flex-col">
         <AdSenseScript />

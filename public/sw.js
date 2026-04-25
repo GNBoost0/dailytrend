@@ -1,30 +1,32 @@
-/// <reference lib="webworker" />
-declare let self: ServiceWorkerGlobalScope;
+// DailyTrend Service Worker v2 — PWA conforme
+const CACHE_NAME = 'dailytrend-v2';
 
-const CACHE_NAME = 'dailytrend-v1';
-const STATIC_ASSETS = [
+const PRECACHE_URLS = [
   '/',
   '/manifest.json',
   '/logo-header.png',
-  '/icon-512.png',
+  '/icon-512x512.png',
+  '/icon-maskable-512.png',
+  '/apple-touch-icon.png',
 ];
 
-// Installation — pré-cache les assets statiques
-self.addEventListener('install', (event) => {
+// Install — pré-cache
+self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
+    caches.open(CACHE_NAME).then(function(cache) {
+      return cache.addAll(PRECACHE_URLS);
     })
   );
   self.skipWaiting();
 });
 
-// Activation — nettoyer les vieux caches
-self.addEventListener('activate', (event) => {
+// Activate — nettoyer vieux caches
+self.addEventListener('activate', function(event) {
   event.waitUntil(
-    caches.keys().then((keys) => {
+    caches.keys().then(function(keys) {
       return Promise.all(
-        keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
+        keys.filter(function(key) { return key !== CACHE_NAME; })
+            .map(function(key) { return caches.delete(key); })
       );
     })
   );
@@ -32,75 +34,70 @@ self.addEventListener('activate', (event) => {
 });
 
 // Fetch — network first, cache fallback
-self.addEventListener('fetch', (event) => {
+self.addEventListener('fetch', function(event) {
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
     fetch(event.request)
-      .then((response) => {
-        // Cache les pages et assets en succès
+      .then(function(response) {
         if (response.status === 200) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
+          var clone = response.clone();
+          caches.open(CACHE_NAME).then(function(cache) {
             cache.put(event.request, clone);
           });
         }
         return response;
       })
-      .catch(() => {
-        // Fallback cache si hors ligne
-        return caches.match(event.request).then((cached) => {
+      .catch(function() {
+        return caches.match(event.request).then(function(cached) {
           return cached || new Response('Hors ligne', { status: 503 });
         });
       })
   );
 });
 
-// Push notification
-self.addEventListener('push', (event) => {
-  let data: any = {};
+// Push notifications
+self.addEventListener('push', function(event) {
+  var data = {};
   try {
-    data = event.data?.json() || {};
-  } catch {
-    data = { title: '📰 DailyTrend', body: 'Nouveaux articles disponibles !' };
+    data = event.data ? event.data.json() : {};
+  } catch (e) {
+    data = { title: 'DailyTrend', body: 'Nouveaux articles !' };
   }
 
-  const title = data.title || '📰 DailyTrend';
-  const options: NotificationOptions = {
+  var title = data.title || 'DailyTrend';
+  var options = {
     body: data.body || 'De nouveaux articles sont disponibles.',
-    icon: '/icon-512.png',
-    badge: '/icon-512.png',
+    icon: '/icon-512x512.png',
+    badge: '/icon-maskable-512.png',
     tag: 'dailytrend-daily',
     data: { url: data.url || '/' },
     actions: [
       { action: 'open', title: 'Lire' },
-      { action: 'dismiss', title: 'Plus tard' },
+      { action: 'dismiss', title: 'Plus tard' }
     ],
     vibrate: [100, 50, 100],
-    renotify: true,
+    renotify: true
   };
 
   event.waitUntil(self.registration.showNotification(title, options));
 });
 
-// Clic sur notification
-self.addEventListener('notificationclick', (event) => {
+// Notification click
+self.addEventListener('notificationclick', function(event) {
   event.notification.close();
-
-  const urlToOpen = event.notification.data?.url || '/';
-
   if (event.action === 'dismiss') return;
 
+  var url = (event.notification.data && event.notification.data.url) || '/';
+
   event.waitUntil(
-    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clients) => {
-      for (const client of clients) {
-        if (client.url.includes(new URL(urlToOpen, self.location.origin).pathname) && 'focus' in client) {
-          return client.focus();
+    self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(function(clients) {
+      for (var i = 0; i < clients.length; i++) {
+        if (clients[i].url.indexOf(url) !== -1 && 'focus' in clients[i]) {
+          return clients[i].focus();
         }
       }
-      return self.clients.openWindow(urlToOpen);
+      return self.clients.openWindow(url);
     })
   );
 });
-
-export {};
