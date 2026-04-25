@@ -68,8 +68,9 @@ self.addEventListener('push', function(event) {
   var title = data.title || 'DailyTrend';
   var options = {
     body: data.body || 'De nouveaux articles sont disponibles.',
-    icon: '/icon-512x512.png',
-    badge: '/icon-maskable-512.png',
+    icon: self.location.origin + '/icon-512x512.png',
+    badge: self.location.origin + '/icon-192x192.png',
+    image: data.image || undefined,
     tag: 'dailytrend-daily',
     data: { url: data.url || '/' },
     actions: [

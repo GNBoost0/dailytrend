@@ -19,7 +19,7 @@ export default function Footer() {
       if (isIOS) {
         alert('📱 Sur iPhone/iPad : ouvre le menu de partage (icône ↗️ en bas) puis "Sur l\'écran d\'accueil"');
       } else {
-        alert('📱 Ouvre le menu du navigateur (⋮ en haut à droite) puis "Installer l\'application" ou "Ajouter à l\'écran d\'accueil"');
+        alert('📱 Ouvre le menu du navigateur (⋮ en haut à droite) puis "Installer l\'application"');
       }
     }
   };
@@ -73,7 +73,7 @@ export default function Footer() {
                   className="px-4 py-2 text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity flex items-center gap-1.5"
                   style={{background:'var(--bg-primary)', color:'var(--text-secondary)', border:'1px solid var(--border)'}}
                 >
-                  📱 Écran d&apos;accueil
+                  📲 Installer l&apos;app
                 </button>
               </div>
             </div>
