@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { onPromptAvailable, consumeDeferredPrompt } from '@/lib/pwa';
 
-const VAPID_PUBLIC_KEY = 'BJz_Xeqn5j15mWV3zJsOyF6WY76MAPvuUF56JRD7goZvVQ7GYqIhPgn1pYsw7vrhDF10UJ7qU807tG5OYDRNP3I';
+const VAPID_PUBLIC_KEY = 'BD4Tnqty_Ax67GWwG9ctM203c_ay3nLi_J0hzuGjTZ6LAYhq_OqrFB6WUUik8NMVs8F2a7mLoqvcM_J_gEaPa7Q';
 
 function urlBase64ToUint8Array(base64: string) {
   const padding = '='.repeat((4 - base64.length % 4) % 4);
