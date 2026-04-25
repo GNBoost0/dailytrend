@@ -9,11 +9,11 @@ export const metadata: Metadata = {
     template: '%s | DailyTrend',
   },
   description: 'Votre source quotidienne d\'actualités : Intelligence Artificielle, Crypto & Blockchain, Cybersécurité, Bien-être & Biohacking, Gaming & E-sport, Finance & Business.',
-  metadataBase: new URL('https://dailytrend.vercel.app'),
+  metadataBase: new URL('https://www.dailytrend.fr'),
   openGraph: {
     type: 'website',
     locale: 'fr_FR',
-    url: 'https://dailytrend.vercel.app',
+    url: 'https://www.dailytrend.fr',
     siteName: 'DailyTrend',
     title: 'DailyTrend — L\'actualité Tech, Crypto, IA, Gaming & Bien-être',
     description: 'Votre source quotidienne d\'actualités : IA, Crypto, Cybersécurité, Bien-être, Gaming.',
