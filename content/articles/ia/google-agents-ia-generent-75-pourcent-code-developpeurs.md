@@ -1,7 +1,7 @@
 ---
 title: "Google : 75% du code écrit par des agents IA, les développeurs changent de métier"
 description: "Trois quarts du nouveau code de Google est désormais produit par des agents IA. Retour sur une révolution silencieuse qui redéfinit le métier de développeur en 2026."
-date: "2026-04-26"
+date: "2026-04-25"
 topic: "ia"
 tags: ["Google", "agents IA", "développement", "Gemini", "Cloud Next 2026"]
 image: "/images/articles/google-agents-ia-generent-75-pourcent-code-developpeurs.jpg"

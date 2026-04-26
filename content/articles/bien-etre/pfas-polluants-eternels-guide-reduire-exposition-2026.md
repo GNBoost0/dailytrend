@@ -1,7 +1,7 @@
 ---
 title: "PFAS : les polluants éternels sont dans votre assiette et la France se réveille enfin"
 description: "Cosmétiques, poêles, eau en bouteille : les PFAS contaminent 92% des échantillons d'eau en France. Le gouvernement publie ses premiers conseils grand public pour s'en protéger."
-date: "2026-04-26"
+date: "2026-04-25"
 topic: "bien-etre"
 tags: ["PFAS", "polluants éternels", "santé publique", "environnement", "alimentation", "biohacking"]
 image: "/images/articles/pfas-polluants-eternels-guide-reduire-exposition-2026.jpg"

@@ -1,7 +1,7 @@
 ---
 title: "Fermes de cartes SIM : l'industrie invisible qui inonde la France de SMS frauduleux"
 description: "94 sites dans 17 pays, des centaines de milliers de cartes SIM pilotées par des cybercriminels : découvrez comment ces usines clandestines transforment votre téléphone en arme de phishing."
-date: "2026-04-26"
+date: "2026-04-25"
 topic: "cyber"
 tags: ["ferme SIM", "phishing", "SMS frauduleux", "cybersécurité", "arnaque", "quishing"]
 image: "/images/articles/fermes-cartes-sim-sms-frauduleux-arnaque-industrielle.jpg"

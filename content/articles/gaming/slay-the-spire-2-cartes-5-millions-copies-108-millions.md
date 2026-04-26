@@ -1,7 +1,7 @@
 ---
 title: "Slay the Spire 2 : 5,3 millions de copies et un modèle qui défie l'industrie du jeu vidéo"
 description: "Le rogue-lite de Mega Crit écrase Silksong et Hades 2 sur Steam avec 108 millions de dollars en un mois. Décryptage d'un succès qui prouve qu'on peut faire des miracles avec dix personnes."
-date: "2026-04-26"
+date: "2026-04-25"
 topic: "gaming"
 tags: ["Slay the Spire 2", "indépendant", "Steam", "rogue-lite", "Mega Crit"]
 image: "/images/articles/slay-the-spire-2-cartes-5-millions-copies-108-millions.jpg"

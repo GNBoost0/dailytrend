@@ -1,7 +1,7 @@
 ---
 title: "Transmission d'entreprise : 500 000 patrons à la retraite, la France face au choc du siècle"
 description: "Dix ans. C'est le délai qu'ont 500 000 chefs d'entreprise avant de prendre leur retraite. Derrière ce chiffre : 3 millions d'emplois menacés. Décryptage du plan Objectif Reprises de Bercy."
-date: "2026-04-26"
+date: "2026-04-25"
 topic: "finance"
 tags: ["transmission entreprise", "PME", "retraite", "Bercy", "repreneurs"]
 image: "/images/articles/transmission-entreprise-500-000-retraite-plan-bercy-2026.jpg"

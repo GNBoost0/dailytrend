@@ -1,7 +1,7 @@
 ---
 title: "Stablecoins : comment Wall Street conquiert l'infrastructure crypto"
 description: "Morgan Stanley lance un fonds dédié aux réserves de stablecoins. Pendant ce temps, le fisc traque les portefeuilles et les ETF Bitcoin enchaînent les records. Décryptage d'une bascule historique."
-date: "2026-04-26"
+date: "2026-04-25"
 topic: "crypto"
 tags: ["stablecoins", "Morgan Stanley", "Wall Street", "ETF Bitcoin", "institutionnalisation", "MiCA"]
 image: "/images/articles/stablecoins-wall-street-morgan-stanley-institutionnalisation.jpg"
