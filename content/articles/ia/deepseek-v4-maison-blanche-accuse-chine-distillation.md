@@ -1,7 +1,7 @@
 ---
 title: "DeepSeek-V4, la Maison Blanche accuse la Chine de voler l'IA américaine"
 description: "Pendant que DeepSeek lance son modèle V4, Washington accuse Pékin de copier clandestinement les IA américaines. Enquête sur la guerre invisible de la distillation."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "ia"
 tags: ["DeepSeek", "IA Chine", "Maison Blanche", "distillation", "OpenAI", "Anthropic", "guerre technologique"]
 image: "/images/articles/deepseek-v4-maison-blanche-accuse-chine-distillation.jpg"

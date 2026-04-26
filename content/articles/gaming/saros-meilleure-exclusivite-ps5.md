@@ -1,10 +1,10 @@
 ---
 title: "Saros (PS5) : Housemarque prouve que le rogue-lite peut être un chef-d'œuvre"
 description: "Le studio derrière Returnal revient avec Saros, une exclusivité PS5 qui obtient 9/10 sur Gamekult. Analyse d'un jeu d'action qui pourrait définir l'année 2026."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "gaming"
 tags: ["Saros", "PS5", "PlayStation", "Housemarque", "Test", "Action", "Rogue-lite"]
-image: "/images/articles/saros-ps5.jpg"
+image: "/images/articles/saros-meilleure-exclusivite-ps5.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
@@ -74,6 +74,8 @@ La réponse courte : **oui**.
 La réponse longue : si vous possédez une PS5 et que vous aimez les jeux d'action qui demandent de la maîtrise, Saros est un incontournable. Si vous avez aimé *Returnal*, c'est un achat aveugle. Et si vous n'avez jamais touché à un rogue-lite, Saros pourrait bien être le jeu qui vous convertit.
 
 Housemarque a trouvé sa voix. Et elle résonne fort.
+
+Et pour les joueurs qui attendent une potentielle version PC, rien n'a été annoncé pour le moment. Mais si l'on regarde le parcours de *Returnal* — sorti sur PS5 en avril 2021, puis porté sur PC en février 2023 —, un scénario similaire n'est pas exclu d'ici 2028. En attendant, Saros reste une raison de plus d'allumer sa PS5.
 
 ## Sources
 - [Test Saros — La meilleure exclusivité de la PlayStation 5](https://www.gamekult.com/jeux/saros-3050888242/test.html) — Gamekult, avril 2026

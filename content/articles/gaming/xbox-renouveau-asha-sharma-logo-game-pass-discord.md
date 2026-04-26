@@ -1,7 +1,7 @@
 ---
 title: "Xbox renaît : nouveau logo, Game Pass à bas prix et partenariat Discord"
 description: "Sous l'impulsion d'Asha Sharma, Xbox enterre Microsoft Gaming, baisse le Game Pass et s'offre un rebranding complet. Décryptage d'un virage stratégique majeur."
-date: "2026-04-26"
+date: "2026-04-24"
 topic: "gaming"
 tags: ["xbox", "game-pass", "microsoft", "discord", "asha-sharma"]
 image: "/images/articles/xbox-renouveau-asha-sharma-logo-game-pass-discord.jpg"

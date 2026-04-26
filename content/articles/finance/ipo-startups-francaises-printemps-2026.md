@@ -1,7 +1,7 @@
 ---
 title: "IPO françaises 2026 : les startups qui bousculent Euronext ce printemps"
 description: "Fintech, deeptech, e-santé : les introductions en Bouse françaises explosent au printemps 2026. Décryptage des opportunités et pièges pour les investisseurs particuliers."
-date: "2026-04-26"
+date: "2026-04-24"
 topic: "finance"
 tags: ["IPO", "startup", "Euronext", "investissement", "fintech", "bourse"]
 image: "/images/articles/ipo-startups-francaises-printemps-2026.jpg"

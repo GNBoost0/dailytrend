@@ -1,7 +1,7 @@
 ---
 title: "Alice Recoque : pourquoi la France parie sur AMD pour son IA"
 description: "Le premier supercalculateur exascale français sera équipé de puces AMD, pas Nvidia. Derrière ce choix technique se cache une bataille stratégique pour la souveraineté numérique de l'Europe."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "ia"
 tags: ["AMD", "supercalculateur", "Alice Recoque", "souveraineté numérique", "exascale"]
 image: "/images/articles/alice-recoque-france-choisit-amd-face-nvidia.jpg"

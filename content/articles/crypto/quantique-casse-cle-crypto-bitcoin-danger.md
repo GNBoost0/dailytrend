@@ -1,7 +1,7 @@
 ---
 title: "Quantique : une clé crypto cassée, le Bitcoin en danger réel ?"
 description: "Un chercheur a cassé une clé elliptique sur un ordinateur quantique public. 6,9 millions de Bitcoin sont exposés. Décryptage d'une menace qui cesse d'être théorique."
-date: "2026-04-26"
+date: "2026-04-24"
 topic: "crypto"
 tags: ["quantique", "bitcoin", "sécurité", "blockchain", "cryptographie"]
 image: "/images/articles/quantique-casse-cle-crypto-bitcoin-danger.jpg"

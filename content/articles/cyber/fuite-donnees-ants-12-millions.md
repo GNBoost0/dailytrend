@@ -1,10 +1,10 @@
 ---
 title: "Fuite ANTS : 12 millions de Français victimes d'un désastre numérique"
 description: "Cartes d'identité, passeports, permis de conduire : les données de 12 millions de Français exposées dans une fuite massive à l'ANTS. Ce que vous devez faire maintenant."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "cyber"
 tags: ["ANTS", "Fuite de données", "Cybersécurité", "France", "Identité", "Protection", "Hack"]
-image: "/images/articles/fuite-ants.jpg"
+image: "/images/articles/fuite-donnees-ants-12-millions.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

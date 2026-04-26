@@ -1,7 +1,7 @@
 ---
 title: "Data centers : la France accélère l'IA avec la loi PINM, les associations crient casse-cou"
 description: "L'Assemblée nationale vote un statut inédit pour faciliter l'implantation de centres de données. Entre ambition IA et inquiétudes écologiques, décryptage d'un texte qui divise."
-date: "2026-04-26"
+date: "2026-04-24"
 topic: "ia"
 tags: ["data centers", "intelligence artificielle", "loi PINM", "souveraineté numérique", "écologie", "Mistral AI"]
 image: "/images/articles/data-centers-loi-pinm-france-accelere-ia.jpg"

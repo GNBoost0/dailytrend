@@ -1,7 +1,7 @@
 ---
 title: "Starfield PS5 : numéro 1 des ventes mais miné par les bugs — le paradoxe Bethesda"
 description: "Sorti le 7 avril sur PS5, Starfield domine les ventes US malgré des crashs à répétition. Retour sur un lancement mi-figue mi-raisin qui divise la communauté PlayStation."
-date: "2026-04-26"
+date: "2026-04-24"
 topic: "gaming"
 tags: ["Starfield", "PS5", "Bethesda", "Xbox", "Microsoft"]
 image: "/images/articles/starfield-ps5-numero-1-ventes-polemique-bugs.jpg"

@@ -1,7 +1,7 @@
 ---
 title: "Cyberattaque de l'ASP : l'hémorragie des administrations françaises atteint vos données bancaires"
 description: "L'Agence de Services et de Paiement piratée le 1er avril : coordonnées bancaires, numéros de sécu et données personnelles siphonnés. L'administration française perd le contrôle."
-date: "2026-04-26"
+date: "2026-04-24"
 topic: "cyber"
 tags: ["cyberattaque", "ASP", "administration française", "fuite de données", "données bancaires", "CNIL"]
 image: "/images/articles/asp-cyberattaque-donnees-bancaires-administration-francaise-hemorragie.jpg"

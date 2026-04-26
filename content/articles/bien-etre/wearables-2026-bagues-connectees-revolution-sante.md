@@ -1,7 +1,7 @@
 ---
 title: "Wearables santé 2026 : les bagues connectées qui remplacent votre médecin"
 description: "Bagues connectées, capteurs de glucose grand public, IA embarquée : en 2026, les wearables ne comptent plus vos pas, ils lisent votre métabolisme. Tour d'horizon d'une révolution silencieuse."
-date: "2026-04-26"
+date: "2026-04-24"
 topic: "bien-etre"
 tags: ["wearables", "bagues-connectées", "biohacking", "santé-connectée", "Oura-Ring", "glucose"]
 image: "/images/articles/wearables-2026-bagues-connectees-revolution-sante.jpg"

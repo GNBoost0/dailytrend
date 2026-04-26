@@ -1,7 +1,7 @@
 ---
 title: "Parcoursup piraté pendant 5 mois : 705 000 candidats victimes d'un fiasco silencieux"
 description: "Un pirate a siphonné les données personnelles de 705 000 candidats Parcoursup entre octobre 2025 et mars 2026. Cinq mois d'invisibilité totale. Décryptage d'un scandale qui révèle les failles profondes de la cybersécurité publique."
-date: "2026-04-26"
+date: "2026-04-24"
 topic: "cyber"
 tags: ["parcoursup", "fuite de données", "cyberattaque", "services publics"]
 image: "/images/articles/parcoursup-pirate-5-mois-705000-donnees-volees.jpg"

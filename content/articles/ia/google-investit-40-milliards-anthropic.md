@@ -1,10 +1,10 @@
 ---
 title: "Google mise 40 milliards sur Anthropic : la guerre de l'IA entre dans une nouvelle dimension"
 description: "Google investit 40 milliards de dollars dans Anthropic, créateur de Claude. Pourquoi ce pari massif ? Analyse des enjeux pour l'avenir de l'intelligence artificielle."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "ia"
 tags: ["Google", "Anthropic", "Claude", "IA", "Investissement", "Intelligence Artificielle"]
-image: "/images/articles/google-anthropic.jpg"
+image: "/images/articles/google-investit-40-milliards-anthropic.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

@@ -1,10 +1,10 @@
 ---
 title: "Fontainebleau en feu : comment l'IA aide les pompiers à gagner la bataille des forêts"
 description: "Après l'incendie en forêt de Fontainebleau, l'intelligence artificielle s'invite dans la lutte contre les feux de forêt. Technologies, résultats et limites d'une révolution silencieuse."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "bien-etre"
 tags: ["Environnement", "IA", "Forêt", "Fontainebleau", "Santé", "Prévention", "Innovation"]
-image: "/images/articles/fontainebleau.jpg"
+image: "/images/articles/ia-surveillance-forets-fontainebleau.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Ozempic ne marche pas sur 10% des patients : la génétique révèle les limites du médicament star"
 description: "Une nouvelle étude montre que les médicaments GLP-1 comme Ozempic et Wegovy perdent leur efficacité chez 10% des patients à cause de variants génétiques. Décryptage d'une découverte qui change la donne."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "bien-etre"
 tags: ["Ozempic", "GLP-1", "génétique", "biohacking", "perte de poids", "médecine personnalisée"]
 image: "/images/articles/ozempic-genetique-limites-medicament.jpg"

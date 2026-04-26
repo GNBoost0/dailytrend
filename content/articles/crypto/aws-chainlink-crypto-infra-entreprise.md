@@ -1,10 +1,10 @@
 ---
 title: "AWS intègre Chainlink : la crypto entre chez Amazon par la grande porte"
 description: "Amazon Web Services ajoute les oracles Chainlink à son marketplace. Morgan Stanley lance un fonds pour stablecoins. La crypto n'est plus une alternative, elle devient une infrastructure."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "crypto"
 tags: ["Chainlink", "AWS", "stablecoins", "Morgan Stanley", "adoption institutionnelle"]
-image: "/images/articles/aws-integre-chainlink-crypto-infra-entreprise.jpg"
+image: "/images/articles/aws-chainlink-crypto-infra-entreprise.jpg"
 author: "DailyTrend"
 readingTime: 10
 ---

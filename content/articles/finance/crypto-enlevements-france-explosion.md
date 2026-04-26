@@ -1,10 +1,10 @@
 ---
 title: "Crypto-enlèvements : 135 faits en 3 ans, la France face à une criminalité invisible"
 description: "Depuis 2023, 135 enlèvements liés aux cryptomonnaies ont été recensés en France. Le phénomène explose : 67 faits en 2025 contre 18 en 2024. Décryptage d'une menace qui touche aussi les particuliers."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "finance"
 tags: ["crypto", "criminalité", "sécurité", "finance", "investissement", "France", "assurance"]
-image: "/images/articles/crypto-enlevements-france.jpg"
+image: "/images/articles/crypto-enlevements-france-explosion.jpg"
 author: "DailyTrend"
 readingTime: 10
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Meta espionne ses salariés pour entraîner son IA : la cybersurveillance au travail franchit un cap"
 description: "Captures d'écran, frappes clavier, mouvements de souris : Meta collecte tout sur les postes de ses employés pour nourrir ses agents IA, à un mois de 8 000 licenciements. Enquête sur une dérive qui pose question."
-date: "2026-04-25"
+date: "2026-04-23"
 topic: "cyber"
 tags: ["Meta", "surveillance", "cybersécurité", "privacy", "IA", "droits des travailleurs"]
 image: "/images/articles/meta-espionne-salaries-entrainer-ia.jpg"
