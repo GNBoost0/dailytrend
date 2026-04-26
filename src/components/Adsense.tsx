@@ -2,7 +2,7 @@
 
 import Script from 'next/script';
 
-const ADSENSE_CLIENT_ID = ''; // À remplir après approbation Google AdSense
+const ADSENSE_CLIENT_ID = 'ca-pub-6723208572709553';
 
 export function AdSenseScript() {
   if (!ADSENSE_CLIENT_ID) return null;
