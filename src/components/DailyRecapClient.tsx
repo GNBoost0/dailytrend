@@ -209,11 +209,14 @@ function DateTooltip() {
   const [show, setShow] = useState(false);
 
   return (
-    <div className="relative">
+    <div
+      className="relative"
+      onMouseEnter={() => setShow(true)}
+      onMouseLeave={() => setShow(false)}
+    >
       <button
         onClick={() => setShow(!show)}
-        onBlur={() => setTimeout(() => setShow(false), 200)}
-        className="w-6 h-6 rounded-full flex items-center justify-center text-xs transition-all hover:scale-110 focus:outline-none"
+        className="w-6 h-6 rounded-full flex items-center justify-center text-xs transition-all hover:scale-110 focus:outline-none sm:pointer-events-none"
         style={{ background: 'var(--bg-secondary)', color: 'var(--text-muted)', border: '1px solid var(--border)' }}
       >
         <span className="inline-block" style={{ animation: 'glow 2s ease-in-out infinite' }}>ℹ️</span>
