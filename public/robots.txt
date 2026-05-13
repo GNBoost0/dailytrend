@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.dailytrend.fr
+
+# Sitemaps
+Sitemap: https://www.dailytrend.fr/sitemap.xml

@@ -1,0 +1,62 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { topics } from '@/lib/topics';
+
+export const metadata = { title: 'À propos — DailyTrend' };
+
+export default function AboutPage() {
+  return (
+    <>
+      <Header />
+      <main className="flex-1">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h1 className="text-3xl sm:text-4xl font-extrabold mb-6" style={{color:'var(--text-primary)'}}>À propos de DailyTrend</h1>
+          
+          <div className="prose-article">
+            <p><strong>DailyTrend</strong>, c'est un média digital né d'une idée simple : l'actualité tech mérite mieux que des articles recyclés et des titres clickbait.</p>
+
+            <h2>Notre mission</h2>
+            <p>Chaque jour, nous publions des articles frais, rigoureusement documentés et sourcés sur les sujets qui façonnent notre époque. Pas de remplissage, pas de bullshit — juste de l'information qui compte.</p>
+
+            <h2>Nos rubriques</h2>
+            <ul>
+              {topics.map(t => (
+                <li key={t.id}><strong>{t.icon} {t.name}</strong> — {t.description}</li>
+              ))}
+            </ul>
+
+            <h2>Notre engagement</h2>
+            <ul>
+              <li><strong>100% vérité</strong> — Chaque fait est vérifié et sourcé. Aucune information inventée.</li>
+              <li><strong>Zéro jargon inutile</strong> — On explique clairement, sans vous prendre pour un idiot.</li>
+              <li><strong>Des opinions assumées</strong> — On a des points de vue, et on les argumente.</li>
+              <li><strong>Contenu original</strong> — Pas de copier-coller, pas de reformulation d'articles existants.</li>
+            </ul>
+
+            <h2>Notre processus éditorial</h2>
+            <p>DailyTrend s'appuie sur un processus de rédaction assisté par technologie, avec une chaîne éditoriale structurée :</p>
+            <ul>
+              <li><strong>Recherche et veille</strong> — nos équipes identifient les sujets émergents à couvrir chaque jour</li>
+              <li><strong>Rédaction structurée</strong> — chaque article est produit en suivant un guide éditorial strict : angle original, sources vérifiées, données chiffrées, citations</li>
+              <li><strong>Vérification et validation humaine</strong> — chaque article est relu, fact-checké et validé avant publication</li>
+              <li><strong>Sources transparentes</strong> — nos articles citent systématiquement leurs sources (institutions, publications scientifiques, médias de référence)</li>
+            </ul>
+            <p>Ce modèle nous permet de publier régulièrement tout en maintenant un niveau de qualité et de rigueur que nous revendiquons.</p>
+
+            <h2>L'équipe</h2>
+            <p>DailyTrend est un projet indépendant fondé et dirigé par <strong>Julian COLPART</strong>. Le site combine des outils de rédaction modernes avec une supervision éditoriale humaine pour offrir une information fiable, accessible et documentée.</p>
+
+            <h2>Rejoignez-nous</h2>
+            <p>Suivez-nous sur les réseaux sociaux pour ne rien manquer :</p>
+            <ul>
+              <li>Twitter/X — @DailyTrend_IA, @DailyTrend_Crypto, @DailyTrend_Cyber, @DailyTrend_Bio, @DailyTrend_Gaming</li>
+              <li>Reddit — u/DailyTrend</li>
+              <li>Inscrivez-vous à notre newsletter pour le récap quotidien</li>
+            </ul>
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+}

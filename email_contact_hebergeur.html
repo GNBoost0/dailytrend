@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Daily Trend</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f8f9fa;
+            color: #111118;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        /* Header Style */
+        .email-header {
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text .daily {
+            color: #111118;
+        }
+
+        .logo-text .trend {
+            color: #f07000;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+        }
+
+        /* Content */
+        .email-content {
+            padding: 32px;
+        }
+
+        .email-content p {
+            margin-bottom: 16px;
+            color: #555566;
+        }
+
+        .email-content .highlight {
+            color: #f07000;
+            font-weight: 600;
+        }
+
+        .info-box {
+            background-color: #f8f9fa;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: #8888a0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 12px;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #111118;
+        }
+
+        .info-value {
+            color: #555566;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #f07000;
+            color: #ffffff;
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            margin-top: 24px;
+            transition: background-color 0.2s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #d95000;
+        }
+
+        /* Footer Style */
+        .email-footer {
+            background-color: #f8f9fa;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 32px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .footer-logo .daily {
+            color: #111118;
+        }
+
+        .footer-logo .trend {
+            color: #f07000;
+        }
+
+        .footer-logo-img {
+            height: 35px;
+            width: auto;
+        }
+
+        .footer-logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-links {
+            font-size: 12px;
+            color: #8888a0;
+            margin-bottom: 16px;
+        }
+
+        .footer-links a {
+            color: #555566;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+
+        .footer-links a:hover {
+            color: #f07000;
+        }
+
+        .footer-copyright {
+            font-size: 11px;
+            color: #8888a0;
+        }
+
+        .signature {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .signature p {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 600px) {
+            .email-content {
+                padding: 24px 20px;
+            }
+
+            .email-footer {
+                padding: 24px 20px;
+            }
+
+            .logo-img {
+                height: 45px;
+            }
+
+            .logo-text {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="email-header">
+            <a href="https://dailytrend.fr" class="logo">
+                <img src="https://i.ibb.co/207wSkQ3/logo.png" alt="Daily Trend Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="daily">Daily</span><span class="trend">Trend</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- Content -->
+        <div class="email-content">
+            <p>Bonjour,</p>
+
+            <p>Notre hébergeur de domaine nous a récemment informé qu'une <span class="highlight">proposition commerciale</span> avait été formulée à notre attention via leur plateforme. Cependant, les détails de cette offre n'ont pas été transmis.</p>
+
+            <p>Je vous contacte donc pour obtenir plus d'informations sur votre proposition. Pourriez-vous s'il vous plaît me transmettre :</p>
+
+            <ul style="margin: 16px 0 24px 24px; color: #555566;">
+                <li>La nature de votre offre</li>
+                <li>Toute information pertinente concernant cette opportunité</li>
+            </ul>
+
+            <div class="info-box">
+                <h3>À propos de Daily Trend</h3>
+                <div class="info-item">
+                    <span class="info-label">Site web</span>
+                    <span class="info-value">https://dailytrend.fr</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Type</span>
+                    <span class="info-value">Agrégateur d'actualités tech</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Langues</span>
+                    <span class="info-value">Français (entièrement traduisible via Google Translate)</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Thématiques</span>
+                    <span class="info-value">IA, Crypto, Cyber, Gaming, Finance</span>
+                </div>
+            </div>
+
+            <p>Je reste à votre entière disposition pour étudier votre proposition et discuter des opportunités potentielles de collaboration.</p>
+
+            <p>Dans l'attente de votre retour, je vous souhaite une excellente journée.</p>
+
+            <div class="signature">
+                <p><strong>Cordialement,</strong></p>
+                <p><strong>L'équipe Daily Trend</strong></p>
+                <p>contact@dailytrend.fr</p>
+                <p>https://dailytrend.fr</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="email-footer">
+            <div class="footer-logo">
+                <img src="https://i.ibb.co/207wSkQ3/logo.png" alt="Daily Trend Logo" class="footer-logo-img">
+                <div class="footer-logo-text">
+                    <span class="daily">Daily</span><span class="trend">Trend</span>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="https://dailytrend.fr">Accueil</a>
+                <a href="https://dailytrend.fr/ia">IA</a>
+                <a href="https://dailytrend.fr/crypto">Crypto</a>
+                <a href="https://dailytrend.fr/cyber">Cyber</a>
+                <a href="https://dailytrend.fr/gaming">Gaming</a>
+            </div>
+
+            <p class="footer-copyright">
+                © 2025 Daily Trend. Tous droits réservés.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
