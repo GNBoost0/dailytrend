@@ -48,38 +48,40 @@ export default function DailyRecapClient({ recaps }: { recaps: RecapEntry[] }) {
   return (
     <section className="border-b" style={{ borderColor: 'var(--border)' }}>
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Titre + dates */}
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-2xl font-extrabold tracking-tight" style={{ color: 'var(--text-primary)' }}>
-            Daily<span style={{ color: 'var(--accent)' }}>Recap</span>
-          </h2>
-          {recaps.length > 1 && (
-            <div className="flex gap-1.5 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-              {recaps.map((r, i) => (
-                <button
-                  key={r.date}
-                  onClick={() => setActiveIdx(i)}
-                  className="shrink-0 px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all"
-                  style={{
-                    background: i === activeIdx ? 'var(--accent)' : 'var(--bg-secondary)',
-                    color: i === activeIdx ? 'white' : 'var(--text-muted)',
-                  }}
-                >
-                  {formatShortDate(r.date)}
-                </button>
-              ))}
+        {/* Titre + sélecteur de date */}
+        <div className="mb-6">
+          <div className="flex items-center justify-between gap-4 mb-3">
+            <h2 className="text-2xl font-extrabold tracking-tight" style={{ color: 'var(--text-primary)' }}>
+              Daily<span style={{ color: 'var(--accent)' }}>Recap</span>
+            </h2>
+            <div className="flex items-center gap-2">
+              {recaps.length > 1 && (
+                <div className="flex items-center gap-1" style={{ scrollbarWidth: 'none' }}>
+                  <button
+                    onClick={() => setActiveIdx(Math.max(0, activeIdx - 1))}
+                    disabled={activeIdx === 0}
+                    className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold transition-all disabled:opacity-30"
+                    style={{ background: 'var(--bg-secondary)', color: 'var(--text-muted)', border: '1px solid var(--border)' }}
+                  >
+                    ‹
+                  </button>
+                  <DateDropdown value={recap.date} recaps={recaps} onChange={(date) => {
+                    const idx = recaps.findIndex(r => r.date === date);
+                    if (idx >= 0) setActiveIdx(idx);
+                  }} />
+                  <button
+                    onClick={() => setActiveIdx(Math.min(recaps.length - 1, activeIdx + 1))}
+                    disabled={activeIdx === recaps.length - 1}
+                    className="w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold transition-all disabled:opacity-30"
+                    style={{ background: 'var(--bg-secondary)', color: 'var(--text-muted)', border: '1px solid var(--border)' }}
+                  >
+                    ›
+                  </button>
+                </div>
+              )}
+              <DateTooltip />
             </div>
-          )}
-        </div>
-
-        <div className="flex items-center gap-3 mb-4">
-          <div className="relative flex items-center gap-2">
-            <DateDropdown value={recap.date} recaps={recaps} onChange={(date) => {
-            const idx = recaps.findIndex(r => r.date === date);
-            if (idx >= 0) setActiveIdx(idx);
-          }} />
-        </div>
-        <DateTooltip />
+          </div>
         </div>
 
         {/* Flux continu */}

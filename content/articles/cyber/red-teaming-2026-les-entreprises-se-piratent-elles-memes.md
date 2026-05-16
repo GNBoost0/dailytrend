@@ -4,7 +4,7 @@ description: "Face à des cyberattaques record, les entreprises françaises adop
 date: "2026-05-15"
 topic: "cyber"
 tags: ["red teaming", "tests de pénétration", "offensive security", "cybersécurité", "NIS2"]
-image: "/images/articles/red-teaming-2026-entreprises-se-piratent-elles-memes.jpg"
+image: "/images/articles/red-teaming-2026-les-entreprises-se-piratent-elles-memes.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

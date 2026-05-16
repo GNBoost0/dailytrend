@@ -4,7 +4,7 @@ description: "Les ETF Bitcoin ont drain√© 80 milliards de dollars en 18 mois. D√
 date: "2026-05-15"
 topic: "crypto"
 tags: ["bitcoin", "ETF", "blackrock", "institutionnels", "finance", "crypto"]
-image: "/images/articles/etf-bitcoin-2026-blackrock-regles-jeu.jpg"
+image: "/images/articles/etf-bitcoin-2026-comment-blackrock-rewrite-les-regles-du-jeu.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---
