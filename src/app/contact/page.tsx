@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 const SOCIALS = [
   {
     name: 'Twitter / X',
-    handle: '@DailyTrend_IA',
-    url: 'https://x.com/DailyTrend_IA',
+    handle: '@DailyTrendFr',
+    url: 'https://x.com/DailyTrendFr',
     icon: (
       <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -188,7 +188,7 @@ export default function ContactPage() {
                 <div className="mt-4 pt-4" style={{ borderTop: '1px solid var(--border)' }}>
                   <p className="text-[11px] font-semibold mb-2" style={{ color: 'var(--text-muted)' }}>Comptes par rubrique (X)</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {['@DailyTrend_Crypto', '@DailyTrend_Cyber', '@DailyTrend_Bio', '@DailyTrend_Gaming', '@DailyTrend_Finance'].map(h => (
+                    {['@DailyTrendFr'].map(h => (
                       <span key={h} className="px-2 py-1 rounded-lg text-[10px] font-medium" style={{ background: 'var(--bg-secondary)', color: 'var(--text-secondary)', border: '1px solid var(--border)' }}>
                         {h}
                       </span>

@@ -49,7 +49,7 @@ export default function AboutPage() {
             <h2>Rejoignez-nous</h2>
             <p>Suivez-nous sur les réseaux sociaux pour ne rien manquer :</p>
             <ul>
-              <li>Twitter/X — @DailyTrend_IA, @DailyTrend_Crypto, @DailyTrend_Cyber, @DailyTrend_Bio, @DailyTrend_Gaming</li>
+              <li>Twitter/X — @DailyTrendFr</li>
               <li>Reddit — u/DailyTrend</li>
               <li>Inscrivez-vous à notre newsletter pour le récap quotidien</li>
             </ul>

@@ -7,7 +7,7 @@ export const topics = [
     color: 'from-purple-500 to-indigo-600',
     image: '/images/topics/ia.jpg',
     description: 'Dernières avancées en IA, LLM, machine learning et outils intelligents.',
-    twitter: '@DailyTrend_IA',
+    twitter: '@DailyTrendFr',
   },
   {
     id: 'crypto',
@@ -17,7 +17,7 @@ export const topics = [
     color: 'from-amber-500 to-orange-600',
     image: '/images/topics/crypto.jpg',
     description: 'Marchés crypto, analyses, DeFi, NFT et regulation.',
-    twitter: '@DailyTrend_Crypto',
+    twitter: '@DailyTrendFr',
   },
   {
     id: 'cyber',
@@ -27,7 +27,7 @@ export const topics = [
     color: 'from-emerald-500 to-teal-600',
     image: '/images/topics/cyber.jpg',
     description: 'Menaces, protection, VPN, fuites de données et vie privée.',
-    twitter: '@DailyTrend_Cyber',
+    twitter: '@DailyTrendFr',
   },
   {
     id: 'bien-etre',
@@ -37,7 +37,7 @@ export const topics = [
     color: 'from-pink-500 to-rose-600',
     image: '/images/topics/bien-etre.jpg',
     description: 'Santé, optimisation, nutrition, sommeil et performance.',
-    twitter: '@DailyTrend_Bio',
+    twitter: '@DailyTrendFr',
   },
   {
     id: 'gaming',
@@ -47,7 +47,7 @@ export const topics = [
     color: 'from-cyan-500 to-blue-600',
     image: '/images/topics/gaming.jpg',
     description: 'Jeux vidéo, tournois, reviews et industry news.',
-    twitter: '@DailyTrend_Gaming',
+    twitter: '@DailyTrendFr',
   },
   {
     id: 'finance',
@@ -57,7 +57,7 @@ export const topics = [
     color: 'from-green-500 to-emerald-600',
     image: '/images/topics/finance.jpg',
     description: 'Investissement, assurance, entrepreneuriat, B2B et stratégies financières.',
-    twitter: '@DailyTrend_Finance',
+    twitter: '@DailyTrendFr',
   },
 ] as const;
 
