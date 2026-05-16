@@ -36,9 +36,15 @@ function setEngagement(status: 'subscribed' | 'dismissed') {
   localStorage.setItem(STORAGE_KEY, JSON.stringify({ status, date: Date.now() }));
 }
 
-// Vérifier si l'utilisateur a vraiment une subscription push active
-async function hasActivePushSubscription(): Promise<boolean> {
+// Vérifier si l'utilisateur a les notifications actives
+// Soit via une push subscription, soit via la permission navigateur accordée
+async function hasNotificationsEnabled(): Promise<boolean> {
   try {
+    // Permission navigateur déjà accordée = notifications activées pour l'utilisateur
+    if (typeof Notification !== 'undefined' && Notification.permission === 'granted') {
+      return true;
+    }
+    // Sinon vérifier si une push subscription existe
     if (!('serviceWorker' in navigator) || !('PushManager' in window)) return false;
     const reg = await navigator.serviceWorker.getRegistration('/sw.js');
     if (!reg) return false;
@@ -82,12 +88,12 @@ export default function EngagementPrompt() {
     let cancelled = false;
 
     async function init() {
-      // 1) Vérifier si déjà abonné push
-      const isSubscribed = await hasActivePushSubscription();
+      // 1) Vérifier si notifications déjà actives (permission navigateur OU push subscription)
+      const isEnabled = await hasNotificationsEnabled();
       if (cancelled) return;
 
-      if (isSubscribed) {
-        // Déjà abonné → ne jamais montrer, nettoyer le localStorage
+      if (isEnabled) {
+        // Notifications déjà activées → ne jamais montrer le popup
         setEngagement('subscribed');
         return;
       }
