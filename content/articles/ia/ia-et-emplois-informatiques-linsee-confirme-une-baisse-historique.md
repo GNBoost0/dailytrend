@@ -4,7 +4,7 @@ description: "L'Insee révèle que l'IA réduit les effectifs informatiques en F
 date: "2026-05-15"
 topic: "ia"
 tags: ["emploi", "informatique", "insee", "developpeur", "transformation"]
-image: "/images/articles/ia-emplois-informatiques-insee-2026.jpg"
+image: "/images/articles/ia-et-emplois-informatiques-linsee-confirme-une-baisse-historique.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
