@@ -7,7 +7,7 @@ tags: ["credit", "dette", "banque", "taux"]
 image: "/images/articles/credit-prive-2026-les-banques-reculent-les-preteurs-prives-cashent.jpg"
 author: "DailyTrend"
 readingTime: 9
-%
+---
 
 T'as remarqué ? Il devient de plus en plus dur d'obtenir un prêt auprès de ta banque pour un projet un peu ambitieux. Ce n'est pas dans ta tête. C'est un mouvement de fond, structurel, qui secoue l'économie française depuis deux ans. Pendant que les établissements historiques serrent la vis sous la pression de régulations toujours plus strictes, une nouvelle race de financiers fait son entrée en force. Ils ne cherchent pas à gérer ton épargne ou à te vendre une carte bleue premium. Ils veulent une seule chose : prêter de l'argent aux sociétés qui ont besoin de cash, et se faire payer cher pour ça.
 
