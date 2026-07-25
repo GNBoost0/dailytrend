@@ -4,7 +4,7 @@ description: "Les stablecoins pèsent 300 milliards en 2026. Découvrez comment 
 date: "2026-07-25"
 topic: "crypto"
 tags: ["stablecoins", "USDT", "USDC", "MiCA", "blockchain", "defi"]
-image: "/images/articles/stablecoins-2026-monnaie-parallele-defie-visa.jpg"
+image: "/images/articles/stablecoins-2026-la-monnaie-parallele-qui-defie-visa.jpg"
 author: "DailyTrend"
 readingTime: 10
 ---

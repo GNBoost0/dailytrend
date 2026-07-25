@@ -4,7 +4,7 @@ description: "67 % des grandes entreprises françaises ont adopté l'IA. Ce que 
 date: "2026-07-25"
 topic: "ia"
 tags: ["intelligence artificielle", "emploi", "France", "compétences", "transformation numérique"]
-image: "/images/articles/ia-emploi-2026-grand-basculement-travail-francais.jpg"
+image: "/images/articles/ia-et-emploi-2026-le-grand-basculement-du-travail-francais.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

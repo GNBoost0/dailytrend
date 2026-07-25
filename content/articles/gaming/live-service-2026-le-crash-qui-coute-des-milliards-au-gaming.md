@@ -4,7 +4,7 @@ description: "Concord, Suicide Squad, Anthem : le modèle live service a englout
 date: "2026-07-25"
 topic: "gaming"
 tags: ["live service", "industrie", "sony", "ea", "business"]
-image: "/images/articles/live-service-2026-crash-milliards.jpg"
+image: "/images/articles/live-service-2026-le-crash-qui-coute-des-milliards-au-gaming.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

@@ -4,7 +4,7 @@ description: "L'alimentation sur-mesure basée sur votre génome explose en 2026
 date: "2026-07-25"
 topic: "bien-etre"
 tags: ["nutrition", "adn", "epigenetique", "biohacking", "sante"]
-image: "/images/articles/nutrition-adn-2026-vos-genes-deviennent-votre-coach.jpg"
+image: "/images/articles/nutrition-adn-2026-vos-genes-deviennent-votre-coach-perso.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

@@ -4,7 +4,7 @@ description: "Avec 23,5 millions de comptes exposés (+108%), la France devient 
 date: "2026-07-25"
 topic: "cyber"
 tags: ["cyberattaque", "piratage", "france", "CNIL", "protection"]
-image: "/images/articles/piratage-france-2026-effondrement.jpg"
+image: "/images/articles/piratage-france-2026-2e-pays-mondial-leffondrement.jpg"
 author: "DailyTrend"
 readingTime: 11
 ---

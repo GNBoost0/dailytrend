@@ -4,7 +4,7 @@ description: "ANTS, FICOBA, Cegedim : 250 millions d'enregistrements exposés en
 date: "2026-07-25"
 topic: "cyber"
 tags: ["ANTS", "FICOBA", "Cegedim", "fuite de données", "dark web", "CNIL"]
-image: "/images/articles/donnees-etat-piratees-2026.jpg"
+image: "/images/articles/donnees-detat-piratees-2026-le-grand-pillage-francais.jpg"
 author: "DailyTrend"
 readingTime: 10
 ---

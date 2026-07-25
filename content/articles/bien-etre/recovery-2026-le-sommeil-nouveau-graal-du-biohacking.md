@@ -4,7 +4,7 @@ description: "En 2026, le biohacking mise tout sur le recovery. Sommeil profond,
 date: "2026-07-25"
 topic: "bien-etre"
 tags: ["recovery", "sommeil", "biohacking", "wearables", "hrv"]
-image: "/images/articles/recovery-2026-sommeil-nouveau-graal-biohacking.jpg"
+image: "/images/articles/recovery-2026-le-sommeil-nouveau-graal-du-biohacking.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

@@ -4,7 +4,7 @@ description: "Primes en hausse, catastrophes naturelles record, système Cat Nat
 date: "2026-07-25"
 topic: "finance"
 tags: ["assurance", "climat", "inflation", "cat-nat", "menages", "primes"]
-image: "/images/articles/assurance-2026-facture-climatique-explose-france.jpg"
+image: "/images/articles/assurance-2026-la-facture-climatique-explose-en-france.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

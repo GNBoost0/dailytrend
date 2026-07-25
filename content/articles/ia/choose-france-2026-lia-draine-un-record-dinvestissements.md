@@ -4,7 +4,7 @@ description: "L'IA est devenue le premier secteur d'investissement de Choose Fra
 date: "2026-07-25"
 topic: "ia"
 tags: ["choose france", "investissement", "data centers", "souverainete numerique", "infrastructure"]
-image: "/images/articles/choose-france-2026-ia-record-investissements.jpg"
+image: "/images/articles/choose-france-2026-lia-draine-un-record-dinvestissements.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

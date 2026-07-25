@@ -4,7 +4,7 @@ description: "Le capital-investissement français dépasse les 600 milliards d'a
 date: "2026-07-25"
 topic: "finance"
 tags: ["private equity", "capital-investissement", "LBO", "fusions acquisitions", "finance"]
-image: "/images/articles/private-equity-2026-le-capital-investissement-francais-pulverise-tous-les-records.jpg"
+image: "/images/articles/private-equity-2026-le-capital-investissement-francais-pulverise-tous-les-record.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---
