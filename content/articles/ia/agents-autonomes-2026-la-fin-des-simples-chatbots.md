@@ -4,7 +4,7 @@ description: "Oubliez ChatGPT. En 2026, les entreprises passent aux agents auton
 date: "2026-07-27"
 topic: "ia"
 tags: ["agents", "ia", "productivite", "automation"]
-image: "/images/articles/agents-autonomes-2026.jpg"
+image: "/images/articles/agents-autonomes-2026-la-fin-des-simples-chatbots.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

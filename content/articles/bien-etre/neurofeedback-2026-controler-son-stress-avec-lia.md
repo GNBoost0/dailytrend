@@ -4,7 +4,7 @@ description: "Le neurofeedback et la stimulation du nerf vague démocratisent le
 date: "2026-07-27"
 topic: "bien-etre"
 tags: ["neurofeedback", "stress", "sante-mentale", "ia-sante"]
-image: "/images/articles/neurofeedback-2026-controle-stress-ia.jpg"
+image: "/images/articles/neurofeedback-2026-controler-son-stress-avec-lia.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

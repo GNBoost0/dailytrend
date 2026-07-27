@@ -4,7 +4,7 @@ description: "Oublie le café double expresso. En 2026, l'optimisation mentale p
 date: "2026-07-27"
 topic: "bien-etre"
 tags: ["nootropiques", "cognition", "biohacking", "productivite"]
-image: "/images/articles/nootropiques-2026-stacks-cognitifs.jpg"
+image: "/images/articles/nootropiques-2026-lere-des-stacks-cognitifs-sur-mesure.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

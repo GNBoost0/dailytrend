@@ -4,7 +4,7 @@ description: "Fini les tutoriels de 3 heures. En 2026, le gaming retourne à l'e
 date: "2026-07-27"
 topic: "gaming"
 tags: ["gameplay", "design", "tendances", "accessibilite"]
-image: "/images/articles/gameplay-zero-latence-2026.jpg"
+image: "/images/articles/gameplay-zero-latence-2026-la-complexite-tue-le-plaisir.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
