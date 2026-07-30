@@ -4,7 +4,7 @@ description: "Microsoft lance MAI-Cyber-1-Flash, une IA capable de détecter les
 date: "2026-07-30"
 topic: "cyber"
 tags: ["Intelligence Artificielle", "Microsoft", "Sécurité", "Vulnérabilités"]
-image: "/images/articles/microsoft-mai-cyber-flash.jpg"
+image: "/images/articles/microsoft-mai-cyber-la-ia-sauve-t-elle-la-securite.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
