@@ -4,7 +4,7 @@ description: "Comment le Bitcoin transforme l'immobilier en 2026 : tokenisation,
 date: "2026-08-01"
 topic: "crypto"
 tags: ["tokenisation", "immobilier", "bitcoin", "rwa"]
-image: "/images/articles/bitcoin-2026-tokenisation-immobiliere.jpg"
+image: "/images/articles/bitcoin-2026-le-choc-de-la-tokenisation-immobiliere.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

@@ -4,7 +4,7 @@ description: "Finis les compléments basiques. En 2026, les peptides deviennent 
 date: "2026-08-01"
 topic: "bien-etre"
 tags: ["sante", "biohacking", "longevite", "peptides"]
-image: "/images/articles/peptides-2026-ingenierie-moleculaire.jpg"
+image: "/images/articles/peptides-2026-lingenierie-moleculaire-du-corps.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

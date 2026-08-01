@@ -4,7 +4,7 @@ description: "Mistral, Emilabs et les investissements record : plongée dans la 
 date: "2026-08-01"
 topic: "ia"
 tags: ["startups", "investissements", "mistral", "economie"]
-image: "/images/articles/ecosysteme-ia-2026-capitalisme-francais-renait.jpg"
+image: "/images/articles/ecosysteme-ia-2026-le-capitalisme-francais-renait.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
