@@ -4,7 +4,7 @@ description: "En 2026, la nutrition de précision remplace les régimes généri
 date: "2026-08-04"
 topic: "bien-etre"
 tags: ["nutrition", "biohacking", "ia", "longevite"]
-image: "/images/articles/biohacking-2026-nutrition-ultrapersonnalisee.jpg"
+image: "/images/articles/biohacking-2026-la-nutrition-ultrapersonnalisee.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

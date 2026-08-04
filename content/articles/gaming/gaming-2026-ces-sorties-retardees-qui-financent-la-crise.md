@@ -4,7 +4,7 @@ description: "Reportés à 2027 ou au-delà, les blockbusters comme GTA 6 ou Bey
 date: "2026-08-04"
 topic: "gaming"
 tags: ["retards", "gaming", "budget", "industrie"]
-image: "/images/articles/gaming-2026-retards-sorties-financent-crise.jpg"
+image: "/images/articles/gaming-2026-ces-sorties-retardees-qui-financent-la-crise.jpg"
 author: "DailyTrend"
 readingTime: 12
 ---

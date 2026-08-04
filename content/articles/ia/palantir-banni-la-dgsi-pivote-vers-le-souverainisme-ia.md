@@ -4,7 +4,7 @@ description: "La DGSI rompt avec Palantir pour des solutions françaises. Ce vir
 date: "2026-08-04"
 topic: "ia"
 tags: ["securite", "soverainete", "dgsi", "palantir"]
-image: "/images/articles/palantir-banni-dgsi-pivote-souverainisme-ia.jpg"
+image: "/images/articles/palantir-banni-la-dgsi-pivote-vers-le-souverainisme-ia.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

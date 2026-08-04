@@ -4,7 +4,7 @@ description: "Le Bitcoin a corrigé de 47%. Entre peur extrême et signaux techn
 date: "2026-08-04"
 topic: "crypto"
 tags: ["analyse-technique", "bitcoin", "trading", "volatilite"]
-image: "/images/articles/bitcoin-2026-repli-massif.jpg"
+image: "/images/articles/bitcoin-2026-lanalyse-technique-du-repli-massif.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
