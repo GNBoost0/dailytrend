@@ -4,7 +4,7 @@ description: "Le cyber-extorsion mute : plus besoin de chiffrer vos fichiers, le
 date: "2026-08-09"
 topic: "cyber"
 tags: ["ransomware", "extorsion", "cybercriminalite", "strategie"]
-image: "/images/articles/ransomware-2-0-chantage-reputation.jpg"
+image: "/images/articles/ransomware-20-lere-du-chantage-a-la-reputation.jpg"
 author: "DailyTrend"
 readingTime: 12
 ---

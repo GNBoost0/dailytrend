@@ -4,7 +4,7 @@ description: "La France trône au sommet de l’IA européenne en 2026. Entre st
 date: "2026-08-09"
 topic: "ia"
 tags: ["economie", "startup", "mistral", "france"]
-image: "/images/articles/france-ia-2026-18-4-milliards-silhouette.jpg"
+image: "/images/articles/france-ia-2026-184-milliards-et-leffet-de-silhouette.jpg"
 author: "DailyTrend"
 readingTime: 12
 ---

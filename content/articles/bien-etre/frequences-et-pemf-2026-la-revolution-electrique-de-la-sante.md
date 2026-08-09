@@ -4,7 +4,7 @@ description: "Oubliez les pilules. En 2026, la santé passe par l'électricité 
 date: "2026-08-09"
 topic: "bien-etre"
 tags: ["sante", "pemf", "biohacking", "technologie"]
-image: "/images/articles/frequences-pemf-2026-revolution-electrique.jpg"
+image: "/images/articles/frequences-et-pemf-2026-la-revolution-electrique-de-la-sante.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

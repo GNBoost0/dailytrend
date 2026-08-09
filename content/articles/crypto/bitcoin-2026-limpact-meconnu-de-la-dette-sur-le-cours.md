@@ -4,7 +4,7 @@ description: "Découvrez comment l'explosion de la dette publique mondiale en 20
 date: "2026-08-09"
 topic: "crypto"
 tags: ["bitcoin", "dette", "macroeconomie", "strategie"]
-image: "/images/articles/bitcoin-dette-2026.jpg"
+image: "/images/articles/bitcoin-2026-limpact-meconnu-de-la-dette-sur-le-cours.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
