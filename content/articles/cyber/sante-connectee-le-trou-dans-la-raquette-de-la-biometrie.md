@@ -4,7 +4,7 @@ description: "250 millions de données de santé volées en France : pourquoi la
 date: "2026-08-10"
 topic: "cyber"
 tags: ["sante", "donnees", "cnil", "biometrie"]
-image: "/images/articles/sante-connectee-biometrie-2026.jpg"
+image: "/images/articles/sante-connectee-le-trou-dans-la-raquette-de-la-biometrie.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

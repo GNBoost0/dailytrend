@@ -4,7 +4,7 @@ description: "Découvrez le classement 2026 des startups IA françaises. Mistral
 date: "2026-08-10"
 topic: "ia"
 tags: ["startups", "france", "mapping", "tech"]
-image: "/images/articles/startups-ia-france-2026-nouvelle-cartographie.jpg"
+image: "/images/articles/startups-ia-france-2026-la-nouvelle-cartographie.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

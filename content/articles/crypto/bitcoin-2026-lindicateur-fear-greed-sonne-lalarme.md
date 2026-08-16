@@ -4,7 +4,7 @@ description: "L'indice de peur est à 11/100. Alors que le Bitcoin corrige viole
 date: "2026-08-10"
 topic: "crypto"
 tags: ["bitcoin", "fear-greed", "analyse-technique", "marché-baissier"]
-image: "/images/articles/bitcoin-2026-indicateur-fear-greed-sonne-lalarme.jpg"
+image: "/images/articles/bitcoin-2026-lindicateur-fear-greed-sonne-lalarme.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
