@@ -4,7 +4,7 @@ description: "Vos données faciales et d'empreintes sont désormais la cible #1.
 date: "2026-08-20"
 topic: "cyber"
 tags: ["biometrie", "phishing", "identite", "cybercriminalite"]
-image: "/images/articles/patrimoine-biometrique-hackers.jpg"
+image: "/images/articles/patrimoine-biometrique-le-nouveau-tresor-des-hackers.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

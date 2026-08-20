@@ -4,7 +4,7 @@ description: "De la ferme verticale aux légumes vivants : comment l'agriculture
 date: "2026-08-20"
 topic: "bien-etre"
 tags: ["biohacking", "sante", "microbiote", "alimentation"]
-image: "/images/articles/indoor-farming-2026-microbiome.jpg"
+image: "/images/articles/indoor-farming-2026-cultiver-son-microbiome-en-appartement.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

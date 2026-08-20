@@ -4,7 +4,7 @@ description: "Le Bitcoin change de nature. Fini les montagnes russes, place à l
 date: "2026-08-20"
 topic: "crypto"
 tags: ["bitcoin", "volatilite", "institutionnel", "finance"]
-image: "/images/articles/bitcoin-2026-fin-volatilite.jpg"
+image: "/images/articles/bitcoin-2026-la-fin-programmee-de-la-volatilite-extreme.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---
