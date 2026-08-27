@@ -4,7 +4,7 @@ description: "Les dispositifs portables de santé explosent en 2026. CGM, bagues
 date: "2026-05-19"
 topic: "bien-etre"
 tags: ["wearables", "santé-connectée", "biohacking", "longévité", "objets-connectés"]
-image: "/images/articles/wearables-sante-2026-montre-medecin.jpg"
+image: "/images/articles/wearables-sante-2026-votre-montre-en-sait-plus-que-votre-medecin.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

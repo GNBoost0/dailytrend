@@ -4,7 +4,7 @@ description: "Oubliez la Silicon Valley. Le vrai argent en 2026 migre vers le b√
 date: "2026-07-03"
 topic: "finance"
 tags: ["private-equity", "industrie", "infrastructures", "investissement"]
-image: "/images/articles/capital-investissement-2026-usines.jpg"
+image: "/images/articles/capital-investissement-2026-adieu-la-tech-place-aux-usines.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

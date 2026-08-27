@@ -4,7 +4,7 @@ description: "La France affiche 100 000 postes vacants en cybersécurité en 202
 date: "2026-05-19"
 topic: "cyber"
 tags: ["cybersécurité", "emploi", "formation", "talents", "recrutement"]
-image: "/images/articles/penurie-cybersecurite-2026-100-000-postes-vacants.jpg"
+image: "/images/articles/penurie-cybersecurite-2026-100-000-postes-restent-vacants.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

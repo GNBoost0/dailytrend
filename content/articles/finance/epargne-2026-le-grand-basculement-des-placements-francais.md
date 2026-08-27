@@ -4,7 +4,7 @@ description: "Livret A en perte de vitesse, assurance-vie redistribuée, SCPI en
 date: "2026-05-19"
 topic: "finance"
 tags: ["épargne", "livret A", "assurance-vie", "placements", "SCPI"]
-image: "/images/articles/epargne-2026-grand-basculement-placements-francais.jpg"
+image: "/images/articles/epargne-2026-le-grand-basculement-des-placements-francais.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

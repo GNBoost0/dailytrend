@@ -4,7 +4,7 @@ description: "Le baromètre INCYBER 2026 révèle 8 613 violations de données e
 date: "2026-05-19"
 topic: "cyber"
 tags: ["fuites de données", "CNIL", "vie privée", "protection des données"]
-image: "/images/articles/fuites-de-donnees-2026-industrialisation.jpg"
+image: "/images/articles/fuites-de-donnees-2026-45-et-lindustrialisation-qui-change-tout.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

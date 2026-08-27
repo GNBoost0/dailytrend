@@ -4,7 +4,7 @@ description: "En 2026, des algorithmes analysent votre génome pour créer des r
 date: "2026-05-19"
 topic: "bien-etre"
 tags: ["nutrition", "ADN", "intelligence-artificielle", "biohacking", "génomique"]
-image: "/images/articles/nutrition-adn-2026-ia.jpg"
+image: "/images/articles/nutrition-adn-2026-comment-lia-code-votre-assiette.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

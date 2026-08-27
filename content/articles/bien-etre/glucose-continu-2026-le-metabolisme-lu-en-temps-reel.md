@@ -4,7 +4,7 @@ description: "Capteurs de glucose, IA nutritionnelle et ADN : en 2026, des milli
 date: "2026-07-24"
 topic: "bien-etre"
 tags: ["glucose", "santé connectée", "nutrition personnalisée", "wearables"]
-image: "/images/articles/glucose-continu-2026-metabolisme-temps-reel.jpg"
+image: "/images/articles/glucose-continu-2026-le-metabolisme-lu-en-temps-reel.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

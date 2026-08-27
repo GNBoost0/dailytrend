@@ -4,7 +4,7 @@ description: "Fini les diabétiques : les capteurs de glucose envahissent le bra
 date: "2026-06-06"
 topic: "bien-etre"
 tags: ["glucose", "wearable", "santé-connectée", "métabolisme"]
-image: "/images/articles/capteur-glucose-continu-2026.jpg"
+image: "/images/articles/glucose-continu-2026-le-capteur-qui-change-tout.jpg"
 author: "DailyTrend"
 readingTime: 12
 ---

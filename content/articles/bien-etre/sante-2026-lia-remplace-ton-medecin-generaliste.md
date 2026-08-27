@@ -4,7 +4,7 @@ description: "Plus d'attente, d'erreurs ou d'approximations. En 2026, l'IA préd
 date: "2026-07-03"
 topic: "bien-etre"
 tags: ["ia-sante", "biohacking", "longevite", "technologie"]
-image: "/images/articles/sante-ia-2026-ton-medecin-est-un-algorithme.jpg"
+image: "/images/articles/sante-2026-lia-remplace-ton-medecin-generaliste.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

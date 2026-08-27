@@ -4,7 +4,7 @@ description: "GAFAM et startups s'endettent à des niveaux records pour financer
 date: "2026-06-06"
 topic: "finance"
 tags: ["dette", "intelligence-artificielle", "marches-financiers", "obligations", "GAFAM"]
-image: "/images/articles/dette-ia-2026-bombe-obligataire-finances.jpg"
+image: "/images/articles/dette-ia-2026-la-bombe-obligataire-qui-menace-tes-finances.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

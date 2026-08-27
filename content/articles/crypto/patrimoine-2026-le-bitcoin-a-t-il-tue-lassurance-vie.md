@@ -4,7 +4,7 @@ description: "Alors que l'assurance-vie s'essouffle, le Bitcoin s'impose comme l
 date: "2026-07-03"
 topic: "crypto"
 tags: ["patrimoine", "bitcoin", "epargne", "finance-perso"]
-image: "/images/articles/patrimoine-2026-bitcoin-assurance-vie.jpg"
+image: "/images/articles/patrimoine-2026-le-bitcoin-a-t-il-tue-lassurance-vie.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

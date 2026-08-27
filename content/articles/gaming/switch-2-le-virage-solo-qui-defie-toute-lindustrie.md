@@ -4,7 +4,7 @@ description: "Avec Splatoon Raiders sur Switch 2, Nintendo prouve que le solo re
 date: "2026-07-24"
 topic: "gaming"
 tags: ["switch 2", "nintendo", "splatoon raiders", "jeu solo", "industrie gaming"]
-image: "/images/articles/switch-2-virage-solo-industrie.jpg"
+image: "/images/articles/switch-2-le-virage-solo-qui-defie-toute-lindustrie.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

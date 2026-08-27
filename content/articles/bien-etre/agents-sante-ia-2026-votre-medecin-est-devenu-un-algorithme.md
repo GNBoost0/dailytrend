@@ -4,7 +4,7 @@ description: "Les agents de santé IA bouleversent la médecine préventive en 2
 date: "2026-06-08"
 topic: "bien-etre"
 tags: ["intelligence artificielle", "biohacking", "santé connectée", "longévité"]
-image: "/images/articles/agents-sante-ia-2026.jpg"
+image: "/images/articles/agents-sante-ia-2026-votre-medecin-est-devenu-un-algorithme.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

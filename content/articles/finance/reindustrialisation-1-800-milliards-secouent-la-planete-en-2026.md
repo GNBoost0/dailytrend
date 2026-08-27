@@ -4,7 +4,7 @@ description: "Les investissements industriels mondiaux ont atteint 1 800 milliar
 date: "2026-07-24"
 topic: "finance"
 tags: ["réindustrialisation", "investissement industriel", "usines", "économie mondiale"]
-image: "/images/articles/reindustrialisation-1800-milliards-secouent-la-planete.jpg"
+image: "/images/articles/reindustrialisation-1-800-milliards-secouent-la-planete-en-2026.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

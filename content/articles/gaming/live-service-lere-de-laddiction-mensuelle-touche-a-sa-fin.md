@@ -4,7 +4,7 @@ description: "Le rêve du revenu récurrent s'effondre. Entre fermetures de serv
 date: "2026-07-20"
 topic: "gaming"
 tags: ["live-service", "economie", " modele-business", "marché"]
-image: "/images/articles/live-service-2026-crash.jpg"
+image: "/images/articles/live-service-lere-de-laddiction-mensuelle-touche-a-sa-fin.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

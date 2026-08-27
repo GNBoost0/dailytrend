@@ -4,7 +4,7 @@ description: "Avec 18,4 milliards d'euros et un record d'investissements, la Fra
 date: "2026-07-03"
 topic: "ia"
 tags: ["economie", "startups", "investissement", "données"]
-image: "/images/articles/business-ia-2026-france-usine-europe.jpg"
+image: "/images/articles/business-ia-2026-la-france-devient-lusine-de-leurope.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

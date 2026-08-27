@@ -4,7 +4,7 @@ description: "24 milliards d'identifiants exposés : la cybercriminalité est de
 date: "2026-07-24"
 topic: "cyber"
 tags: ["stealer-logs", "cybercriminalite", "donnees", "securite"]
-image: "/images/articles/stealer-logs-2026-usine-infernale.jpg"
+image: "/images/articles/stealer-logs-2026-lusine-infernale-de-vos-donnees.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

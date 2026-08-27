@@ -4,7 +4,7 @@ description: "Le marché de l'IA en France pèse 18,4 Md€ en 2026. Choose Fran
 date: "2026-07-24"
 topic: "ia"
 tags: ["intelligence artificielle", "marché ia", "choose france 2026", "économie numérique", "transformation"]
-image: "/images/articles/marche-ia-france-2026-18-milliards-qui-changent-tout.jpg"
+image: "/images/articles/marche-ia-france-2026-184-milliards-qui-changent-tout.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

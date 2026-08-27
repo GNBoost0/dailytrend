@@ -4,7 +4,7 @@ description: "Piratage de masse, faillites : les PME françaises sont devenues l
 date: "2026-07-03"
 topic: "cyber"
 tags: ["PME", "piratage", "données", "cybersecurité"]
-image: "/images/articles/pme-2026-cyber-risque.jpg"
+image: "/images/articles/pme-2026-le-maillon-faible-qui-ruine-la-france.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

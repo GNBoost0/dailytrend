@@ -4,7 +4,7 @@ description: "Santé, e-commerce : le secteur privé est sous le joug d'une vagu
 date: "2026-07-27"
 topic: "cyber"
 tags: ["sante", "economie", "fuite", "entreprise"]
-image: "/images/articles/secteur-prive-cyber-2026.jpg"
+image: "/images/articles/secteur-prive-2026-lhecatombe-cyber-est-silencieuse.jpg"
 author: "DailyTrend"
 readingTime: 12
 ---

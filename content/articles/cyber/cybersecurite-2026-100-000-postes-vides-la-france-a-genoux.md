@@ -4,7 +4,7 @@ description: "La France est devenue la 2e cible mondiale des pirates avec 23,5M 
 date: "2026-07-24"
 topic: "cyber"
 tags: ["cybersécurité", "piratage", "talents", "ANSSI", "pénurie"]
-image: "/images/articles/cybersecurite-france-2026-100000-postes-vides.jpg"
+image: "/images/articles/cybersecurite-2026-100-000-postes-vides-la-france-a-genoux.jpg"
 author: "DailyTrend"
 readingTime: 11
 ---

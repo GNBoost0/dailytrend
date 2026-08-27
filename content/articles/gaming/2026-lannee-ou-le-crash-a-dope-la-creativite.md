@@ -4,7 +4,7 @@ description: "Licenciements massifs, budgets explosifs : 2026 est un cauchemar Ã
 date: "2026-07-03"
 topic: "gaming"
 tags: ["gaming", "industrie", "2026", "tendances"]
-image: "/images/articles/2026-crash-creativite.jpg"
+image: "/images/articles/2026-lannee-ou-le-crash-a-dope-la-creativite.jpg"
 author: "DailyTrend"
 readingTime: 8
 ---

@@ -4,7 +4,7 @@ description: "L'indice de peur est à 11, le cours a corrigé de 47 %. Pourquoi 
 date: "2026-06-30"
 topic: "crypto"
 tags: ["bitcoin", "btc", "prix", "investissement", "analyse"]
-image: "/images/articles/bitcoin-2026-chute-65k.jpg"
+image: "/images/articles/bitcoin-2026-la-chute-a-65k-est-le-signal-dachat-ultime.jpg"
 author: "DailyTrend"
 readingTime: 12
 ---
