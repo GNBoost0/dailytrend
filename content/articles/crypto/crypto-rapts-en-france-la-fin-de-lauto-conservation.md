@@ -4,7 +4,7 @@ description: "Enlèvements, clés privées, migration vers les ETF : comment les
 date: "2026-09-09"
 topic: "crypto"
 tags: ["bitcoin", "sécurité", "crypto-rapts", "ETF"]
-image: "/images/articles/crypto-rapts-france-2026-auto-conservation-en-danger.jpg"
+image: "/images/articles/crypto-rapts-en-france-la-fin-de-lauto-conservation.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

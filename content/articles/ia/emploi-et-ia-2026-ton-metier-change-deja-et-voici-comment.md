@@ -4,7 +4,7 @@ description: "Métiers transformés, nouvelles compétences, salaires : ce que l
 date: "2026-09-09"
 topic: "ia"
 tags: ["emploi", "IA", "compétences", "recrutement", "métiers"]
-image: "/images/articles/emploi-ia-2026-metiers-changent.jpg"
+image: "/images/articles/emploi-et-ia-2026-ton-metier-change-deja-et-voici-comment.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---
