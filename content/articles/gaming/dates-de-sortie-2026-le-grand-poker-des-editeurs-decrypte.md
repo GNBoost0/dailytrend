@@ -4,7 +4,7 @@ description: "Choisir une date de sortie en 2026 ressemble à une partie de poke
 date: "2026-09-16"
 topic: "gaming"
 tags: ["calendrier", "sorties", "industrie", "stratégie"]
-image: "/images/articles/dates-de-sortie-2026-le-grand-poker-des-editeurs.jpg"
+image: "/images/articles/dates-de-sortie-2026-le-grand-poker-des-editeurs-decrypte.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

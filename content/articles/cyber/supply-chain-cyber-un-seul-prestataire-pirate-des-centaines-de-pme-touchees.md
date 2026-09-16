@@ -4,7 +4,7 @@ description: "BigCloud, un hébergeur SaaS, montre comment une cyberattaque se p
 date: "2026-09-16"
 topic: "cyber"
 tags: ["supply chain", "ransomware", "SaaS", "PME"]
-image: "/images/articles/supply-chain-cyber-un-prestataire-pirate-des-centaines-de-pme-tombees.jpg"
+image: "/images/articles/supply-chain-cyber-un-seul-prestataire-pirate-des-centaines-de-pme-touchees.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

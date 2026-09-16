@@ -4,7 +4,7 @@ description: "Les tests d'âge biologique explosent en 2026. Horloge épigénét
 date: "2026-09-16"
 topic: "bien-etre"
 tags: ["âge biologique", "épigénétique", "longévité", "tests sanguins"]
-image: "/images/articles/age-biologique-tests-longevite-2026.jpg"
+image: "/images/articles/age-biologique-ces-tests-promettent-de-mesurer-ta-vieillesse.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

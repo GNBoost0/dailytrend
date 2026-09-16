@@ -4,7 +4,7 @@ description: "Le BTC a repris les 80 000 $ après une correction de 48 %. Analys
 date: "2026-09-16"
 topic: "crypto"
 tags: ["bitcoin", "btc", "analyse", "prévisions"]
-image: "/images/articles/bitcoin-repasse-80000-rebond-ou-piege.jpg"
+image: "/images/articles/bitcoin-repasse-les-80-000-rebond-ou-piege.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

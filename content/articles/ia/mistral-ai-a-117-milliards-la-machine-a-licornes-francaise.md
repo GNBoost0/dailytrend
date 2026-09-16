@@ -4,7 +4,7 @@ description: "Mistral AI valorisé 11,7 milliards d'euros, Emilabs lève 900 mil
 date: "2026-09-16"
 topic: "ia"
 tags: ["Mistral AI", "startups IA", "écosystème français", "levées de fonds"]
-image: "/images/articles/mistral-ai-mapping-startups-ia-france-2026.jpg"
+image: "/images/articles/mistral-ai-a-117-milliards-la-machine-a-licornes-francaise.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---
