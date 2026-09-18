@@ -4,7 +4,7 @@ description: "Thermorégulation, IA, score de sommeil : plongée dans les lits c
 date: "2026-09-17"
 topic: "bien-etre"
 tags: ["sommeil", "lits connectés", "biohacking", "récupération"]
-image: "/images/articles/lits-connectes-2026-ton-matelas-connait-ton-sommeil.jpg"
+image: "/images/articles/lits-connectes-2026-ton-matelas-sait-mieux-que-toi-si-tu-dors-mal.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---

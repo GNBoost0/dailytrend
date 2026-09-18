@@ -4,7 +4,7 @@ description: "Ventes records, catalogue en place, Fire Emblem en vitrine : la Sw
 date: "2026-09-17"
 topic: "gaming"
 tags: ["Nintendo Switch 2", "Fire Emblem", "console", "industrie du jeu vidéo", "rétrocompatibilité"]
-image: "/images/articles/nintendo-switch-2-carton-silencieux-recalibre-generation.jpg"
+image: "/images/articles/nintendo-switch-2-le-carton-silencieux-qui-recalibre-la-generation.jpg"
 author: "DailyTrend"
 readingTime: 9
 ---
